@@ -6,7 +6,7 @@ function questa {
         +incdir+../../+../../uvm_unit-uvm-1.2/src \
         -R \
             -c \
-            -sv_lib $UVM_HOME/linux_x86_64/uvm_dpi \
+            -sv_lib $UVM_LIB \
             -do "run -all; quit -f" \
         - \
         $*

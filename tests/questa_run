@@ -10,7 +10,7 @@ function questa {
         -R \
             -c \
             +uvm_unit_log_file=tmp.log \
-            -sv_lib $UVM_HOME/linux_x86_64/uvm_dpi \
+            -sv_lib $UVM_LIB \
             -do "run -all; quit -f" \
         - \
         $* \
@@ -48,7 +48,7 @@ function questa_no_uvm {
     rm -rf work transcript
 }
 
-questa two_tests.sv
+questa fixtures_and_assertions_test.sv second_file_test.sv
 questa passing_test.sv
 questa empty_test.sv
 questa one_error_test.sv
