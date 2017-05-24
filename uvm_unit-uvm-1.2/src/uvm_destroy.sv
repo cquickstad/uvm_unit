@@ -158,8 +158,8 @@ function void destroy_uvm();
     uvm_queue#(string)::destroy_global_queue();
     uvm_queue#(real)::destroy_global_queue();
     uvm_queue#(shortreal)::destroy_global_queue();
-    uvm_queue#(event)::destroy_global_queue();
-    uvm_queue#(chandle)::destroy_global_queue();
+    // uvm_queue#(event)::destroy_global_queue();   // Cadence Incisiv does not support events in parameter types
+    // uvm_queue#(chandle)::destroy_global_queue(); // Cadence Incisiv does not support chandle in parameter types
     uvm_queue#(byte)::destroy_global_queue();
     uvm_queue#(byte unsigned)::destroy_global_queue();
     uvm_queue#(shortint)::destroy_global_queue();
