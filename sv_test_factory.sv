@@ -32,7 +32,7 @@ virtual class sv_test_factory;
 endclass
 
 
-class sv_test_instantiator #(type T) extends sv_test_factory;
+class sv_test_instantiator #(type T = sv_test_fixture) extends sv_test_factory;
 
     virtual function sv_test_fixture create(unit_test_pkg::unit_test_runner tr);
         T   test = new(tr);

@@ -94,8 +94,8 @@ function void destroy_uvm();
     uvm_config_db#(string)::destroy();
     uvm_config_db#(real)::destroy();
     uvm_config_db#(shortreal)::destroy();
-    uvm_config_db#(event)::destroy();
-    uvm_config_db#(chandle)::destroy();
+    // uvm_config_db#(event)::destroy();   // Cadence Incisiv does not support events in parameter types
+    // uvm_config_db#(chandle)::destroy(); // Cadence Incisiv does not support chandle in parameter types
     uvm_config_db#(byte)::destroy();
     uvm_config_db#(byte unsigned)::destroy();
     uvm_config_db#(shortint)::destroy();
@@ -126,8 +126,8 @@ function void destroy_uvm();
     uvm_resource#(string)::destroy();
     uvm_resource#(real)::destroy();
     uvm_resource#(shortreal)::destroy();
-    uvm_resource#(event)::destroy();
-    uvm_resource#(chandle)::destroy();
+    // uvm_resource#(event)::destroy();   // Cadence Incisiv does not support events in parameter types
+    // uvm_resource#(chandle)::destroy(); // Cadence Incisiv does not support chandle in parameter types
     uvm_resource#(byte)::destroy();
     uvm_resource#(byte unsigned)::destroy();
     uvm_resource#(shortint)::destroy();

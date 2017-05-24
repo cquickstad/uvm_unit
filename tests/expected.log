@@ -212,10 +212,6 @@ UVM_UNIT TEST FINISHED: a_test_with_expected_mesages_in_the_expected_order_shoul
 UVM_UNIT: ALL TESTS COMPLETE (18 tests)
 ----------------------------------------------------------------
 UVM_UNIT PER-TEST ERROR COUNTS:
-an_expected_error_that_never_happens_should_fail (uvm_warning_error_fatal_test.sv:106): 1 error
-an_expected_fatal_that_never_happens_should_fail (uvm_warning_error_fatal_test.sv:111): 1 error
-messages_of_different_severity_seen_out_of_the_expected_order_should_fail (uvm_warning_error_fatal_test.sv:116): 2 errors
-id_and_msg_expected_for_a_different_severity_should_fail (uvm_warning_error_fatal_test.sv:124): 2 errors
 a_test_with_an_unexpected_warning_should_fail (uvm_warning_error_fatal_test.sv:32): 1 error
 a_test_with_an_unexpected_error_should_fail (uvm_warning_error_fatal_test.sv:37): 1 error
 a_test_with_an_unexpected_fatal_should_fail (uvm_warning_error_fatal_test.sv:42): 1 error
@@ -229,6 +225,10 @@ a_test_with_a_warning_id_msg_that_does_not_match_the_expected_warning_id_msg_sho
 a_test_with_a_error_id_msg_that_does_not_match_the_expected_error_id_msg_should_fail (uvm_warning_error_fatal_test.sv:89): 2 errors
 a_test_with_a_fatal_id_msg_that_does_not_match_the_expected_fatal_id_msg_should_fail (uvm_warning_error_fatal_test.sv:95): 2 errors
 an_expected_warning_that_never_happens_should_fail (uvm_warning_error_fatal_test.sv:101): 1 error
+an_expected_error_that_never_happens_should_fail (uvm_warning_error_fatal_test.sv:106): 1 error
+an_expected_fatal_that_never_happens_should_fail (uvm_warning_error_fatal_test.sv:111): 1 error
+messages_of_different_severity_seen_out_of_the_expected_order_should_fail (uvm_warning_error_fatal_test.sv:116): 2 errors
+id_and_msg_expected_for_a_different_severity_should_fail (uvm_warning_error_fatal_test.sv:124): 2 errors
 ----------------------------------------------------------------
 UVM_UNIT TEST SUMMARY:
 28 ERRORS
@@ -365,8 +365,8 @@ UVM_UNIT: ALL TESTS COMPLETE (6 tests)
 ----------------------------------------------------------------
 UVM_UNIT PER-TEST ERROR COUNTS:
 failing_sv_test (sv_test_and_uvm_unit_test.sv:17): 1 error
-failing_uvm_test (sv_test_and_uvm_unit_test.sv:25): 1 error
 failing_sv_test_in_module (sv_test_and_uvm_unit_test.sv:8): 1 error
+failing_uvm_test (sv_test_and_uvm_unit_test.sv:25): 1 error
 ----------------------------------------------------------------
 UVM_UNIT TEST SUMMARY:
 3 ERRORS

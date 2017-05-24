@@ -1,0 +1,51 @@
+#!/bin/bash
+rm -rf out.log
+touch out.log
+
+function incisiv {
+    irun                                    \
+        -sv                                 \
+        -uvmhome ../uvm_unit-uvm-1.2        \
+        -uvmnoautocompile                   \
+        -uvmnocdnsextra                     \
+        -uvmnoloaddpi                       \
+        -sv_lib $UVM_LIB                    \
+        -incdir ../                         \
+        -incdir ../uvm_unit-uvm-1.2/src     \
+        +uvm_unit_log_file=out.log          \
+        $*                                  \
+    ||                                      \
+    echo "Incisive failed: " $* >> out.log
+}
+
+function incisiv_no_uvm {
+    irun                                    \
+        -sv                                 \
+        -uvmnoautocompile                   \
+        -uvmnocdnsextra                     \
+        -uvmnoloaddpi                       \
+        -incdir ../                         \
+        +uvm_unit_log_file=out.log          \
+        $*                                  \
+    ||                                      \
+    echo "Incisive failed: " $* >> out.log
+}
+
+incisiv two_tests.sv
+incisiv passing_test.sv
+incisiv empty_test.sv
+incisiv one_error_test.sv
+incisiv uvm_warning_error_fatal_test.sv
+incisiv unit_test_run_module_body_test.sv
+incisiv run_phases_test.sv
+incisiv timeout_test.sv
+incisiv sv_test_and_uvm_unit_test.sv
+
+# The module test includes only mod_unit.svh, which should not require UVM
+incisiv_no_uvm rtl_test.sv
+incisiv_no_uvm sv_function_test.sv
+incisiv_no_uvm game_of_life_test.sv
+
+rm -rf INCA_libs irun.history irun.log
+
+diff -s out.log expected.log && echo "PASSED" || echo "FAILED"

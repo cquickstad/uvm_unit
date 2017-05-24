@@ -31,6 +31,7 @@
 class unit_test_logger;
 
     protected int                   err_per_ut[unit_test_info]; // Number of failures in each test
+    protected unit_test_info        ut_with_errors[$]; // Maintain the order of failure in "PER-TEST ERROR COUNTS"
 
     protected string                log_fname;
     protected bit                   log_to_file = 0;
@@ -69,6 +70,7 @@ class unit_test_logger;
         if (err_per_ut.exists(current_test_info)) begin
             err_per_ut[current_test_info]++;
         end else begin
+            ut_with_errors.push_back(current_test_info);
             err_per_ut[current_test_info] = 1;
         end
     endfunction
@@ -105,10 +107,11 @@ class unit_test_logger;
         string          summary = $sformatf("%s\nUVM_UNIT: ALL TESTS COMPLETE (%0d tests)",
                                             start_stop_separator, num_unit_tests);
 
-        if (err_per_ut.size() > 0) begin
+        if (ut_with_errors.size() > 0) begin
             summary = {summary, "\n", log_separator, "\nUVM_UNIT PER-TEST ERROR COUNTS:"};
         end
-        foreach (err_per_ut[ti]) begin
+        foreach (ut_with_errors[i]) begin
+            unit_test_info  ti = ut_with_errors[i];
             int num_errs = err_per_ut[ti];
             summary = {summary, "\n", ti.str(), ": ", $sformatf("%0d", num_errs), " error"};
             if (num_errs > 1) summary = {summary, "s"};
