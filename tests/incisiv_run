@@ -13,9 +13,7 @@ function incisiv {
         -incdir ../                         \
         -incdir ../uvm_unit-uvm-1.2/src     \
         +uvm_unit_log_file=out.log          \
-        $*                                  \
-    ||                                      \
-    echo "Incisive failed: " $* >> out.log
+        $*
 }
 
 function incisiv_no_uvm {
@@ -26,12 +24,10 @@ function incisiv_no_uvm {
         -uvmnoloaddpi                       \
         -incdir ../                         \
         +uvm_unit_log_file=out.log          \
-        $*                                  \
-    ||                                      \
-    echo "Incisive failed: " $* >> out.log
+        $*
 }
 
-incisiv two_tests.sv
+incisiv fixtures_and_assertions_test.sv second_file_test.sv
 incisiv passing_test.sv
 incisiv empty_test.sv
 incisiv one_error_test.sv
