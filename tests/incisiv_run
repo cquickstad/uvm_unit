@@ -31,7 +31,7 @@ function incisiv_no_uvm {
     echo "Incisive failed: " $* >> out.log
 }
 
-incisiv two_tests.sv
+incisiv fixtures_and_assertions.sv second_file_test.sv
 incisiv passing_test.sv
 incisiv empty_test.sv
 incisiv one_error_test.sv
