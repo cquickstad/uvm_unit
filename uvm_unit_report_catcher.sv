@@ -69,7 +69,7 @@ class uvm_unit_report_catcher extends uvm_report_catcher;
 
     virtual function void pop_expected_msg();
         if (expected_report_q.size() < 1) return;
-        expected_report_q = expected_report_q[1:$];
+        void'(expected_report_q.pop_front());
     endfunction
 
     virtual function void add_expected_report(uvm_severity sev, string id, string msg, string fname, int line);
@@ -78,6 +78,6 @@ class uvm_unit_report_catcher extends uvm_report_catcher;
     endfunction
 
     virtual function uvm_unit_msg_info_q get_unobserved_expected_messages();
-        return expected_report_q[0:$];
+        get_unobserved_expected_messages = expected_report_q;
     endfunction
 endclass
