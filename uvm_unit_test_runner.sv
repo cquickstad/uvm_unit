@@ -81,7 +81,7 @@ class uvm_unit_test_runner extends unit_test_pkg::unit_test_runner;
         return uvm_ut_info_q;
     endfunction
 
-    protected virtual task run_the_unit_test();
+    virtual task run_the_unit_test();
         pass_unit_test_runner_to_test();
         uvm_pkg::uvm_report_server::uvm_test_file_handle = logger.get_log_file_descriptor();
         uvm_pkg::run_test(running_test_info.ut_name);

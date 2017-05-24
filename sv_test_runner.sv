@@ -55,7 +55,7 @@ class sv_test_runner extends unit_test_pkg::unit_test_runner;
         return sv_ut_info_q;
     endfunction
 
-    protected virtual task run_the_unit_test();
+    virtual task run_the_unit_test();
         create_test();
         running_test.run_test();
         running_test.post_unit_test_checks();
