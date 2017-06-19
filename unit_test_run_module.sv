@@ -43,6 +43,14 @@
 `define UNIT_TEST_LOGGER_TYPE unit_test_pkg::unit_test_logger
 `endif
 
+`ifdef UNIT_TEST_TIMESCALE
+    `UNIT_TEST_TIMESCALE
+`else
+    `ifdef USE_DEFAULT_UNIT_TEST_TIMESCALE
+        `timescale 1ps/1ps
+    `endif
+`endif
+
 
 module unit_test_run_module;
 
