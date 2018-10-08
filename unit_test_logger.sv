@@ -84,7 +84,7 @@ class unit_test_logger;
     endfunction
 
     virtual function string get_start_message();
-        return {start_stop_separator, "\n", $sformatf("UVM_UNIT v%0d", `__UVM_UNIT_VERSION)};
+        return {start_stop_separator, "\n", $sformatf("UVM_UNIT v%0.2f", `__UVM_UNIT_VERSION)};
     endfunction
 
     virtual function string get_pre_test_message();
