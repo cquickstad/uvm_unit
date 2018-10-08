@@ -2,9 +2,13 @@
 rm -rf out.log
 touch out.log
 
+# UVM_LIB will need to be set to some path, such as the following
+# setenv UVM_LIB /some/path/cadenceINCISIVE/15.20.018/tools.lnx86/methodology/UVM/CDNS-1.2/additions/sv/lib/libuvmdpi.so
+
 function incisiv {
     irun                                    \
         -sv                                 \
+        -timescale 1ps/1ps                  \
         -uvmhome ../uvm_unit-uvm-1.2        \
         -uvmnoautocompile                   \
         -uvmnocdnsextra                     \
@@ -19,6 +23,7 @@ function incisiv {
 function incisiv_no_uvm {
     irun                                    \
         -sv                                 \
+        -timescale 1ps/1ps                  \
         -uvmnoautocompile                   \
         -uvmnocdnsextra                     \
         -uvmnoloaddpi                       \
