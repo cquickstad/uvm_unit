@@ -81,6 +81,18 @@
         `__HANDLE_ERROR($sformatf("ASSERT_STR_NE(): \"%s\" == \"%s\"", (A), (B))) \
     end
 
+// Assert that (A)ssignment (P)atterns are (EQ)ual
+`define ASSERT_AP_EQ(A, B)                                               \
+    if ($sformatf("%p", (A)) != $sformatf("%p", (B))) begin              \
+        `__HANDLE_ERROR($sformatf("ASSERT_AP_EQ(): %p != %p", (A), (B))) \
+    end
+
+// Assert that (A)ssignment (P)attern is (EQ)ual to (STR)ing
+`define ASSERT_AP_EQ_STR(A, B_STR)                                               \
+    if ($sformatf("%p", (A)) != (B_STR)) begin                                   \
+        `__HANDLE_ERROR($sformatf("ASSERT_AP_EQ_STR(): %p != %s", (A), (B_STR))) \
+    end
+
 `define ASSERT_NULL(STATEMENT)                                  \
     if ((STATEMENT) != null) begin                              \
         `__HANDLE_ERROR($sformatf(`"ASSERT_NULL(STATEMENT)`"))  \

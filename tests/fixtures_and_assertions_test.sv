@@ -106,6 +106,14 @@ endclass
     #1;
     `ASSERT_NE(3'b110, 3'b1x0)          // Expect pass
     #1;
+    `ASSERT_AP_EQ(i_arr, s_q)           // Expect fail
+    #1;
+    `ASSERT_AP_EQ(i_arr, i_arr)         // Expect pass
+    #1;
+    `ASSERT_AP_EQ_STR(i_arr, "foo")     // Expect fail
+    #1;
+    `ASSERT_AP_EQ_STR(i_arr, "'{2, 3, 7, 9}") // Expect pass
+    #1;
     `ASSERT_STR_EQ("foo", "bar")        // Expect fail
     #1;
     `ASSERT_STR_EQ("foo", "foo")        // Expect pass
