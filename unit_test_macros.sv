@@ -70,27 +70,43 @@
     end
 
 // (STR)ing (EQ)ual
-`define ASSERT_STR_EQ(A, B)                                                       \
-    if ((A) != (B)) begin                                                         \
-        `__HANDLE_ERROR($sformatf("ASSERT_STR_EQ(): \"%s\" != \"%s\"", (A), (B))) \
+`define ASSERT_STR_EQ(A, B)                                                                   \
+    begin                                                                                     \
+        string __a_str = (A);                                                                 \
+        string __b_str = (B);                                                                 \
+        if (__a_str != __b_str) begin                                                         \
+            `__HANDLE_ERROR($sformatf("ASSERT_STR_EQ(): \"%s\" != \"%s\"", __a_str, __b_str)) \
+        end                                                                                   \
     end
 
 // (STR)ing (EQ)ual
-`define ASSERT_STR_NE(A, B)                                                       \
-    if ((A) == (B)) begin                                                         \
-        `__HANDLE_ERROR($sformatf("ASSERT_STR_NE(): \"%s\" == \"%s\"", (A), (B))) \
+`define ASSERT_STR_NE(A, B)                                                                   \
+    begin                                                                                     \
+        string __a_str = (A);                                                                 \
+        string __b_str = (B);                                                                 \
+        if (__a_str == __b_str) begin                                                         \
+            `__HANDLE_ERROR($sformatf("ASSERT_STR_NE(): \"%s\" == \"%s\"", __a_str, __b_str)) \
+        end                                                                                   \
     end
 
 // Assert that (A)ssignment (P)atterns are (EQ)ual
-`define ASSERT_AP_EQ(A, B)                                               \
-    if ($sformatf("%p", (A)) != $sformatf("%p", (B))) begin              \
-        `__HANDLE_ERROR($sformatf("ASSERT_AP_EQ(): %p != %p", (A), (B))) \
+`define ASSERT_AP_EQ(A, B)                                                         \
+    begin                                                                          \
+        string __ap_a = $sformatf("%p", (A));                                      \
+        string __ap_b = $sformatf("%p", (B));                                      \
+        if (__ap_a != __ap_b) begin                                                \
+            `__HANDLE_ERROR($sformatf("ASSERT_AP_EQ(): %s != %s", __ap_a, __ap_b)) \
+        end                                                                        \
     end
 
 // Assert that (A)ssignment (P)attern is (EQ)ual to (STR)ing
-`define ASSERT_AP_EQ_STR(A, B_STR)                                               \
-    if ($sformatf("%p", (A)) != (B_STR)) begin                                   \
-        `__HANDLE_ERROR($sformatf("ASSERT_AP_EQ_STR(): %p != %s", (A), (B_STR))) \
+`define ASSERT_AP_EQ_STR(A, B_STR)                                                      \
+    begin                                                                               \
+        string __ap_a = $sformatf("%p", (A));                                           \
+        string __b_str = (B_STR);                                                       \
+        if (__ap_a != __b_str) begin                                                    \
+            `__HANDLE_ERROR($sformatf("ASSERT_AP_EQ_STR(): %s != %s", __ap_a, __b_str)) \
+        end                                                                             \
     end
 
 `define ASSERT_NULL(STATEMENT)                                  \
