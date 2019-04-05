@@ -94,6 +94,10 @@
     begin                                                                          \
         string __ap_a = $sformatf("%p", (A));                                      \
         string __ap_b = $sformatf("%p", (B));                                      \
+        `ifdef VCS                                                                 \
+        __ap_a = __ap_a.substr(0, __ap_a.len() - 2); // VCS has a trailing space   \
+        __ap_b = __ap_b.substr(0, __ap_b.len() - 2); // VCS has a trailing space   \
+        `endif                                                                     \
         if (__ap_a != __ap_b) begin                                                \
             `__HANDLE_ERROR($sformatf("ASSERT_AP_EQ(): %s != %s", __ap_a, __ap_b)) \
         end                                                                        \
@@ -104,6 +108,9 @@
     begin                                                                               \
         string __ap_a = $sformatf("%p", (A));                                           \
         string __b_str = (B_STR);                                                       \
+        `ifdef VCS                                                                      \
+        __ap_a = __ap_a.substr(0, __ap_a.len() - 2); // VCS has a trailing space        \
+        `endif                                                                          \
         if (__ap_a != __b_str) begin                                                    \
             `__HANDLE_ERROR($sformatf("ASSERT_AP_EQ_STR(): %s != %s", __ap_a, __b_str)) \
         end                                                                             \

@@ -323,7 +323,7 @@ UVM_UNIT v1.10
 ----------------------------------------------------------------
 UVM_UNIT TEST STARTING: this_test_will_timout_and_cause_an_unexpected_uvm_error_and_fail (timeout_test.sv:5)
 UVM_INFO timeout_test.sv(8) @ 100: uvm_test_top [uvm_test_top] Almost there!
-UVM_UNIT: ERROR: timeout_test.sv:5 @ 100: UNEXPECTED UVM_FATAL: ../uvm_unit-uvm-1.2/src/base/uvm_phase.svh:1514 [PH_TIMEOUT] Explicit timeout of 100 hit, indicating a probable testbench issue
+UVM_UNIT: ERROR: timeout_test.sv:5 @ 100: UNEXPECTED UVM_FATAL: ../uvm_unit-uvm-1.2/src/base/uvm_phase.svh:1512 [PH_TIMEOUT] Explicit timeout of 100 hit, indicating a probable testbench issue
 UVM_UNIT: ERROR: timeout_test.sv:5 @ 100: UNEXPECTED UVM_WARNING: :0 [OBJTN_CLEAR] Object 'uvm_top' cleared objection counts for run
 UVM_UNIT TEST FINISHED: this_test_will_timout_and_cause_an_unexpected_uvm_error_and_fail (timeout_test.sv:5) -- FAILED
 ================================================================

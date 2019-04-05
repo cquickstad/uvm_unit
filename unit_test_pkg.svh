@@ -25,7 +25,7 @@
 `ifndef __UNIT_TEST_PKG_SVH__
 `define __UNIT_TEST_PKG_SVH__
 
-`define __UVM_UNIT_VERSION      1.1
+`define __UVM_UNIT_VERSION      1.11
 
 package unit_test_pkg;
     `include "unit_test_info.sv"
