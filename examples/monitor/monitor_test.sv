@@ -55,11 +55,11 @@ class fxtr extends uvm_unit_pkg::uvm_unit_fixture;
     // Such test helpers are a great way to keep tests as simple as
     // possible so they clearly express their intent.
     virtual task drive_x_signal(byte x);
-    vi.val = 0;
-    vi.x = x;
-    #1;
-    `ASSERT_TRUE(af.is_empty())
-    vi.val = 1;
+        vi.val = 0;
+        vi.x = x;
+        #1;
+        `ASSERT_TRUE(af.is_empty())
+        vi.val = 1;
     endtask
 endclass
 
