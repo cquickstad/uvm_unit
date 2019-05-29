@@ -1,0 +1,16 @@
+#!/bin/bash
+
+function questa {
+    vlib work && \
+    vlog \
+        +incdir+../../+../../uvm_unit-uvm-1.2/src \
+        -R \
+            -c \
+            -sv_lib $UVM_LIB \
+            -do "run -all; quit -f" \
+        - \
+        $*
+    rm -rf transcript work
+}
+
+questa my_coverage_test.sv

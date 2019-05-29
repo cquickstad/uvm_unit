@@ -1,0 +1,19 @@
+#!/bin/bash
+
+function vcs_run {
+    vcs \
+        -debug_all \
+        -sverilog \
+        -timescale=1ns/1ns \
+        -CFLAGS -DVCS \
+        +incdir+../../uvm_unit-uvm-1.2/src \
+        +incdir+../../ \
+        ../../uvm_unit-uvm-1.2/src/uvm_pkg.sv \
+        ../../uvm_unit-uvm-1.2/src/dpi/uvm_dpi.cc \
+        $*
+    ./simv
+    rm -rf csrc/ simv simv.daidir/ ucli.key vc_hdrs.h
+}
+
+vcs_run my_coverage_test.sv
+
