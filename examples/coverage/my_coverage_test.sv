@@ -1,3 +1,5 @@
+// An example showing how coverage can be unit tested.
+
 `timescale 1ps/1ps
 
 `include "sv_test.svh"

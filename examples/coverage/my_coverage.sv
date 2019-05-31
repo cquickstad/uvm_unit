@@ -1,3 +1,6 @@
+// A module to measure how many events (posedge ev) happen in a clock cycle.
+// Provides a covergroup for the number of events per clock.
+
 module my_cov (
     input reset,
     input clk,
