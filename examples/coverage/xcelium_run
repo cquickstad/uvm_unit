@@ -1,0 +1,18 @@
+#!/bin/bash
+
+function xcelium {
+    xrun                                    \
+        -sv                                 \
+        -uvmhome ../../uvm_unit-uvm-1.2     \
+        -uvmnoautocompile                   \
+        -uvmnocdnsextra                     \
+        -uvmnoloaddpi                       \
+        -sv_lib $UVM_LIB                    \
+        -incdir ../../                      \
+        -incdir ../../uvm_unit-uvm-1.2/src  \
+        $*
+        rm -rf xcelium.d/ xrun.history xrun.log tr_db.log
+}
+
+xcelium my_coverage_test.sv
+
