@@ -20,8 +20,9 @@ class my_driver extends uvm_driver #(my_item);
     virtual task drive_thread();
         forever begin
             #1;
-            seq_item_port.get(req); // seq_item_port and req are inherited from uvm_driver
+            seq_item_port.get_next_item(req); // seq_item_port and req are inherited from uvm_driver
             vif.foo = req.foo;
+            seq_item_port.item_done();
         end
     endtask
 endclass
