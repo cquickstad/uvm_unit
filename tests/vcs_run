@@ -42,6 +42,7 @@ vcs_run sv_test_and_uvm_unit_test.sv
 vcs_run_no_uvm rtl_test.sv
 vcs_run_no_uvm sv_function_test.sv
 vcs_run_no_uvm game_of_life_test.sv
+vcs_run_no_uvm property_test.sv
 
 
 rm -rf csrc/ simv simv.daidir/ ucli.key vc_hdrs.h

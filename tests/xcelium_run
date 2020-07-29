@@ -6,7 +6,7 @@ touch out.log
 # setenv UVM_LIB /some/path/cadenceINCISIVE/15.20.018/tools.lnx86/methodology/UVM/CDNS-1.2/additions/sv/lib/libuvmdpi.so
 
 function xcelium {
-    irun                                    \
+    xrun                                    \
         -sv                                 \
         -timescale 1ps/1ps                  \
         -uvmhome ../uvm_unit-uvm-1.2        \
@@ -21,7 +21,7 @@ function xcelium {
 }
 
 function xcelium_no_uvm {
-    irun                                    \
+    xrun                                    \
         -sv                                 \
         -timescale 1ps/1ps                  \
         -uvmnoautocompile                   \
@@ -46,6 +46,7 @@ xcelium sv_test_and_uvm_unit_test.sv
 xcelium_no_uvm rtl_test.sv
 xcelium_no_uvm sv_function_test.sv
 xcelium_no_uvm game_of_life_test.sv
+xcelium_no_uvm property_test.sv
 
 rm -rf xcelium.d/ xrun.history xrun.log tr_db.log
 

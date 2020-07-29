@@ -1,5 +1,6 @@
 // -------------------------------------------------------------
 //    Copyright 2017 XtremeEDA
+//    Copyright 2020 Andes Technology
 //    All Rights Reserved Worldwide
 //
 //    Licensed under the Apache License, Version 2.0 (the
@@ -85,7 +86,7 @@ class uvm_unit_test_runner extends unit_test_pkg::unit_test_runner;
         pass_unit_test_runner_to_test();
         uvm_pkg::uvm_report_server::uvm_test_file_handle = logger.get_log_file_descriptor();
         uvm_pkg::run_test(running_test_info.ut_name);
-        running_test.post_unit_test_checks();
+        running_test.post_unit_test();
         uvm_pkg::destroy_uvm();
     endtask
 endclass

@@ -1,5 +1,6 @@
 // -------------------------------------------------------------
 //    Copyright 2017 XtremeEDA
+//    Copyright 2020 Andes Technology
 //    All Rights Reserved Worldwide
 //
 //    Licensed under the Apache License, Version 2.0 (the
@@ -178,6 +179,38 @@
         end                                                                                             \
     end
 
+
+// Allows a property to be instantiated in an assertion in a unit-test module, with proper connections
+// to the pass/fail infrastructure provided by the unit-test framework.
+`define SV_TEST_ASSERT_PROPERTY(NAME, PARAMETERS) \
+    ``NAME``_unit_test_assertion: \
+        assert property (NAME PARAMETERS) begin \
+            unit_test_pkg::unit_test_info::property_pass_count[`"NAME`"]++; \
+        end else begin \
+            unit_test_pkg::unit_test_info::property_fail_count[`"NAME`"]++; \
+        end
+
+`define ASSERT_PROPERTY_PASS_COUNT(PROPERTY_NAME, EXPECTED_PASS_COUNT) \
+    begin \
+        int __property_pass_count = unit_test_pkg::unit_test_info::property_pass_count[`"PROPERTY_NAME`"]; \
+        if (__property_pass_count != (EXPECTED_PASS_COUNT)) begin \
+            `__HANDLE_ERROR($sformatf(`"ASSERT_PROPERTY_PASS_COUNT(PROPERTY_NAME, EXPECTED_PASS_COUNT): %0d !== %0d`", \
+                __property_pass_count, (EXPECTED_PASS_COUNT))) \
+        end \
+    end
+
+`define ASSERT_PROPERTY_FAIL_COUNT(PROPERTY_NAME, EXPECTED_FAIL_COUNT) \
+    begin \
+        int __property_fail_count = unit_test_pkg::unit_test_info::property_fail_count[`"PROPERTY_NAME`"]; \
+        if (__property_fail_count != (EXPECTED_FAIL_COUNT)) begin \
+            `__HANDLE_ERROR($sformatf(`"ASSERT_PROPERTY_FAIL_COUNT(PROPERTY_NAME, EXPECTED_FAIL_COUNT): %0d !== %0d`", \
+                __property_fail_count, (EXPECTED_FAIL_COUNT))) \
+        end \
+    end
+
+`define ASSERT_PROPERTY_PASS_FAIL_COUNT(PROPERTY_NAME, EXPECTED_PASS_COUNT, EXPECTED_FAIL_COUNT) \
+    `ASSERT_PROPERTY_PASS_COUNT(PROPERTY_NAME, EXPECTED_PASS_COUNT) \
+    `ASSERT_PROPERTY_FAIL_COUNT(PROPERTY_NAME, EXPECTED_FAIL_COUNT)
 
 
 // Expectations for warnings, errors, and fatal UVM messages that should be seen

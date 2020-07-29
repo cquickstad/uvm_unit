@@ -1,5 +1,6 @@
 // -------------------------------------------------------------
 //    Copyright 2017 XtremeEDA
+//    Copyright 2020 Andes Technology
 //    All Rights Reserved Worldwide
 //
 //    Licensed under the Apache License, Version 2.0 (the
@@ -26,15 +27,23 @@
 
 
 class unit_test_info;
-    string  ut_name;
-    string  ut_file;
-    int     ut_line;
+
+    static int property_pass_count[string];
+    static int property_fail_count[string];
+    static string running_ut_name;
+
+    string ut_name;
+    string ut_file;
+    int ut_line;
+
     function new(string ut_name, string ut_file, int ut_line);
         this.ut_name = ut_name;
         this.ut_file = ut_file;
         this.ut_line = ut_line;
     endfunction
+
     virtual function string str();
         return $sformatf("%s (%s:%0d)", ut_name, ut_file, ut_line);
     endfunction
+
 endclass

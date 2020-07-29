@@ -1,5 +1,6 @@
 // -------------------------------------------------------------
 //    Copyright 2017 XtremeEDA
+//    Copyright 2020 Andes Technology
 //    All Rights Reserved Worldwide
 //
 //    Licensed under the Apache License, Version 2.0 (the
@@ -57,8 +58,15 @@ class sv_test_fixture;
         __logger.log_err_msg(err_msg, file, line);
     endfunction
 
+    // Runs before setup()
+    virtual function void pre_unit_test();
+        unit_test_pkg::unit_test_info::running_ut_name = __ut_info.ut_name;
+        unit_test_pkg::unit_test_info::property_pass_count.delete();
+        unit_test_pkg::unit_test_info::property_fail_count.delete();
+    endfunction
+
     // Runs after teardown()
-    virtual function void post_unit_test_checks();
+    virtual function void post_unit_test();
         // Nothing here right now, but as part of the fixture, it could be
         // extended by the test writer.
     endfunction

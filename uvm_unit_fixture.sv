@@ -1,5 +1,6 @@
 // -------------------------------------------------------------
 //    Copyright 2017 XtremeEDA
+//    Copyright 2020 Andes Technology
 //    All Rights Reserved Worldwide
 //
 //    Licensed under the Apache License, Version 2.0 (the
@@ -61,6 +62,11 @@ virtual class uvm_unit_fixture extends uvm_test;
         __connect_report_catcher();
     endfunction
 
+    virtual function void phase_started(uvm_phase phase);
+        super.phase_started(phase);
+        if (phase.get_name() == "build") pre_unit_test();
+    endfunction
+
     function void handle_error(string err_msg, string file, int line);
         __logger.log_err_msg(err_msg, file, line);
     endfunction
@@ -87,8 +93,15 @@ virtual class uvm_unit_fixture extends uvm_test;
         handle_error(err_msg, __ut_info.ut_file, __ut_info.ut_line);
     endfunction
 
+    // Runs before UVM's build_phase starts, from the phase_started() method.
+    virtual function void pre_unit_test();
+        unit_test_pkg::unit_test_info::running_ut_name = __ut_info.ut_name;
+        unit_test_pkg::unit_test_info::property_pass_count.delete();
+        unit_test_pkg::unit_test_info::property_fail_count.delete();
+    endfunction
+
     // Runs after all UVM phases are complete
-    virtual function void post_unit_test_checks();
+    virtual function void post_unit_test();
         uvm_unit_msg_info q[$] = __report_catcher.get_unobserved_expected_messages();
         foreach (q[i]) handle_error({"UNOBSERVED ", q[i].str()}, q[i].fname, q[i].line);
     endfunction

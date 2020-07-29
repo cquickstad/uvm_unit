@@ -1,5 +1,6 @@
 // -------------------------------------------------------------
 //    Copyright 2017 XtremeEDA
+//    Copyright 2020 Andes Technology
 //    All Rights Reserved Worldwide
 //
 //    Licensed under the Apache License, Version 2.0 (the
@@ -57,7 +58,8 @@ class sv_test_runner extends unit_test_pkg::unit_test_runner;
 
     virtual task run_the_unit_test();
         create_test();
+        running_test.pre_unit_test();
         running_test.run_test();
-        running_test.post_unit_test_checks();
+        running_test.post_unit_test();
     endtask
 endclass

@@ -46,6 +46,7 @@ incisiv sv_test_and_uvm_unit_test.sv
 incisiv_no_uvm rtl_test.sv
 incisiv_no_uvm sv_function_test.sv
 incisiv_no_uvm game_of_life_test.sv
+incisiv_no_uvm property_test.sv
 
 rm -rf INCA_libs irun.history irun.log
 

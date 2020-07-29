@@ -62,5 +62,6 @@ questa sv_test_and_uvm_unit_test.sv
 questa_no_uvm rtl_test.sv
 questa_no_uvm sv_function_test.sv
 questa_no_uvm game_of_life_test.sv
+questa_no_uvm property_test.sv
 
 diff -s out.log expected.log && echo "PASSED" || echo "FAILED"

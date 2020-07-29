@@ -1,5 +1,5 @@
 ================================================================
-UVM_UNIT v1.11
+UVM_UNIT v1.12
 ----------------------------------------------------------------
 UVM_UNIT TEST STARTING: foo (fixtures_and_assertions_test.sv:40)
 UVM_INFO fixtures_and_assertions_test.sv(12) @ 0: uvm_test_top.cut [cut] Hello from build_phase!
@@ -75,7 +75,7 @@ UVM_UNIT TEST SUMMARY:
 UVM_UNIT RESULT: FAIL
 ================================================================
 ================================================================
-UVM_UNIT v1.11
+UVM_UNIT v1.12
 ----------------------------------------------------------------
 UVM_UNIT TEST STARTING: a_passing_unit_test (passing_test.sv:4)
 UVM_UNIT TEST FINISHED: a_passing_unit_test (passing_test.sv:4) -- PASSED
@@ -96,7 +96,7 @@ UVM_UNIT TEST SUMMARY:
 UVM_UNIT RESULT: PASS
 ================================================================
 ================================================================
-UVM_UNIT v1.11
+UVM_UNIT v1.12
 ================================================================
 UVM_UNIT: ALL TESTS COMPLETE (0 tests)
 ----------------------------------------------------------------
@@ -108,7 +108,7 @@ UVM_UNIT TEST SUMMARY:
 UVM_UNIT RESULT: PASS
 ================================================================
 ================================================================
-UVM_UNIT v1.11
+UVM_UNIT v1.12
 ----------------------------------------------------------------
 UVM_UNIT TEST STARTING: one_failing_test (one_error_test.sv:4)
 UVM_UNIT: ERROR: one_error_test.sv:5 @ 0: ASSERT_FALSE(1)
@@ -127,7 +127,7 @@ UVM_UNIT TEST SUMMARY:
 UVM_UNIT RESULT: FAIL
 ================================================================
 ================================================================
-UVM_UNIT v1.11
+UVM_UNIT v1.12
 ----------------------------------------------------------------
 UVM_UNIT TEST STARTING: a_test_with_an_unexpected_warning_should_fail (uvm_warning_error_fatal_test.sv:32)
 UVM_UNIT: ERROR: uvm_warning_error_fatal_test.sv:32 @ 1: UNEXPECTED UVM_WARNING: uvm_warning_error_fatal_test.sv:10 [ID1] Msg1
@@ -240,7 +240,7 @@ UVM_UNIT TEST SUMMARY:
 UVM_UNIT RESULT: FAIL
 ================================================================
 ================================================================
-UVM_UNIT v1.11
+UVM_UNIT v1.12
 ----------------------------------------------------------------
 UVM_UNIT TEST STARTING: uvm_unit_top_module_body_test (unit_test_run_module_body_test.sv:14)
 UVM_UNIT: ERROR: unit_test_run_module_body_test.sv:16 @ 0: ASSERT_NULL(vi)
@@ -259,7 +259,7 @@ UVM_UNIT TEST SUMMARY:
 UVM_UNIT RESULT: FAIL
 ================================================================
 ================================================================
-UVM_UNIT v1.11
+UVM_UNIT v1.12
 ----------------------------------------------------------------
 UVM_UNIT TEST STARTING: phase_test_1 (run_phases_test.sv:63)
 UVM_INFO run_phases_test.sv(15) @ 0: uvm_test_top.cut [cut] message from build
@@ -319,11 +319,11 @@ UVM_UNIT TEST SUMMARY:
 UVM_UNIT RESULT: PASS
 ================================================================
 ================================================================
-UVM_UNIT v1.11
+UVM_UNIT v1.12
 ----------------------------------------------------------------
 UVM_UNIT TEST STARTING: this_test_will_timout_and_cause_an_unexpected_uvm_error_and_fail (timeout_test.sv:5)
 UVM_INFO timeout_test.sv(8) @ 100: uvm_test_top [uvm_test_top] Almost there!
-UVM_UNIT: ERROR: timeout_test.sv:5 @ 100: UNEXPECTED UVM_FATAL: ../uvm_unit-uvm-1.2/src/base/uvm_phase.svh:1512 [PH_TIMEOUT] Explicit timeout of 100 hit, indicating a probable testbench issue
+UVM_UNIT: ERROR: timeout_test.sv:5 @ 100: UNEXPECTED UVM_FATAL: ../uvm_unit-uvm-1.2/src/base/uvm_phase.svh:1514 [PH_TIMEOUT] Explicit timeout of 100 hit, indicating a probable testbench issue
 UVM_UNIT: ERROR: timeout_test.sv:5 @ 100: UNEXPECTED UVM_WARNING: :0 [OBJTN_CLEAR] Object 'uvm_top' cleared objection counts for run
 UVM_UNIT TEST FINISHED: this_test_will_timout_and_cause_an_unexpected_uvm_error_and_fail (timeout_test.sv:5) -- FAILED
 ================================================================
@@ -340,7 +340,7 @@ UVM_UNIT TEST SUMMARY:
 UVM_UNIT RESULT: FAIL
 ================================================================
 ================================================================
-UVM_UNIT v1.11
+UVM_UNIT v1.12
 ----------------------------------------------------------------
 UVM_UNIT TEST STARTING: passing_sv_test (sv_test_and_uvm_unit_test.sv:13)
 UVM_UNIT TEST FINISHED: passing_sv_test (sv_test_and_uvm_unit_test.sv:13) -- PASSED
@@ -378,7 +378,7 @@ UVM_UNIT TEST SUMMARY:
 UVM_UNIT RESULT: FAIL
 ================================================================
 ================================================================
-UVM_UNIT v1.11
+UVM_UNIT v1.12
 ----------------------------------------------------------------
 UVM_UNIT TEST STARTING: test_that_reset_clears_output (rtl_test.sv:41)
 UVM_UNIT TEST FINISHED: test_that_reset_clears_output (rtl_test.sv:41) -- PASSED
@@ -412,7 +412,7 @@ UVM_UNIT TEST SUMMARY:
 UVM_UNIT RESULT: FAIL
 ================================================================
 ================================================================
-UVM_UNIT v1.11
+UVM_UNIT v1.12
 ----------------------------------------------------------------
 UVM_UNIT TEST STARTING: zero_one_two_cases (sv_function_test.sv:15)
 UVM_UNIT TEST FINISHED: zero_one_two_cases (sv_function_test.sv:15) -- PASSED
@@ -436,7 +436,7 @@ UVM_UNIT TEST SUMMARY:
 UVM_UNIT RESULT: PASS
 ================================================================
 ================================================================
-UVM_UNIT v1.11
+UVM_UNIT v1.12
 ----------------------------------------------------------------
 UVM_UNIT TEST STARTING: pos_neighbors (game_of_life_test.sv:160)
 UVM_UNIT TEST FINISHED: pos_neighbors (game_of_life_test.sv:160) -- PASSED
@@ -485,4 +485,40 @@ UVM_UNIT TEST SUMMARY:
 13 of 13 TESTS PASSED
 ----------------------------------------------------------------
 UVM_UNIT RESULT: PASS
+================================================================
+================================================================
+UVM_UNIT v1.12
+----------------------------------------------------------------
+UVM_UNIT TEST STARTING: property_fails_test (property_test.sv:17)
+UVM_UNIT TEST FINISHED: property_fails_test (property_test.sv:17) -- PASSED
+----------------------------------------------------------------
+UVM_UNIT TEST STARTING: property_passes_test (property_test.sv:56)
+UVM_UNIT TEST FINISHED: property_passes_test (property_test.sv:56) -- PASSED
+----------------------------------------------------------------
+UVM_UNIT TEST STARTING: failing_property_test_1 (property_test.sv:69)
+UVM_UNIT: ERROR: property_test.sv:77 @ 410: ASSERT_PROPERTY_PASS_COUNT(a_and_b_together, 0): 1 !== 0
+UVM_UNIT: ERROR: property_test.sv:78 @ 410: ASSERT_PROPERTY_FAIL_COUNT(a_and_b_together, 1): 0 !== 1
+UVM_UNIT: ERROR: property_test.sv:79 @ 410: ASSERT_PROPERTY_PASS_COUNT(a_and_b_together, 0): 1 !== 0
+UVM_UNIT: ERROR: property_test.sv:79 @ 410: ASSERT_PROPERTY_FAIL_COUNT(a_and_b_together, 1): 0 !== 1
+UVM_UNIT TEST FINISHED: failing_property_test_1 (property_test.sv:69) -- FAILED
+----------------------------------------------------------------
+UVM_UNIT TEST STARTING: failing_property_test_2 (property_test.sv:82)
+UVM_UNIT: ERROR: property_test.sv:90 @ 570: ASSERT_PROPERTY_PASS_COUNT(a_and_b_together, 1): 0 !== 1
+UVM_UNIT: ERROR: property_test.sv:91 @ 570: ASSERT_PROPERTY_FAIL_COUNT(a_and_b_together, 0): 1 !== 0
+UVM_UNIT: ERROR: property_test.sv:92 @ 570: ASSERT_PROPERTY_PASS_COUNT(a_and_b_together, 1): 0 !== 1
+UVM_UNIT: ERROR: property_test.sv:92 @ 570: ASSERT_PROPERTY_FAIL_COUNT(a_and_b_together, 0): 1 !== 0
+UVM_UNIT TEST FINISHED: failing_property_test_2 (property_test.sv:82) -- FAILED
+================================================================
+UVM_UNIT: ALL TESTS COMPLETE (4 tests)
+----------------------------------------------------------------
+UVM_UNIT PER-TEST ERROR COUNTS:
+failing_property_test_1 (property_test.sv:69): 4 errors
+failing_property_test_2 (property_test.sv:82): 4 errors
+----------------------------------------------------------------
+UVM_UNIT TEST SUMMARY:
+8 ERRORS
+2 of 4 TESTS FAILED
+2 of 4 TESTS PASSED
+----------------------------------------------------------------
+UVM_UNIT RESULT: FAIL
 ================================================================
