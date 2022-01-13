@@ -151,11 +151,17 @@
         `__HANDLE_ERROR($sformatf(`"ASSERT_LE(A, B): 'h%0x > 'h%0x`", A, B))    \
     end
 
-// Warning, due to SystemVerilog shortcomings, do not put a statement with
+// The ASSERT_HAS() macro allows the SystemVerilog array.find_first with (...) expression
+// to be used to test if an array has an item in it.
+//
+// WARNING: Due to SystemVerilog shortcomings, do not put a statement with
 // quotes in the `ASSERT_HAS() macro.
-// e.g. `ASSERT_HAS(string, item == "foo", string_queue)
+// e.g. `ASSERT_HAS(string, string_queue, item == "foo") // Don't use a string literal with quotes, like "foo"
 // or
-// `ASSERT_HAS(string, item == my_str, '{"a", "b", "c"})
+// `ASSERT_HAS(string, '{"a", "b", "c"}, item == my_str) // Don't use string literals with quotes, like "a", "b", "c"
+// however
+// `ASSERT_HAS(string, string_queue, item == my_str) // OK
+// is OK
 `define ASSERT_HAS(TYPE, ARRAY, EXPRESSION)                                                     \
     begin                                                                                       \
         TYPE __array_to_search[] = ARRAY;                                                       \
@@ -165,11 +171,17 @@
         end                                                                                     \
     end
 
-// Warning, due to SystemVerilog shortcomings, do not put a statement with
-// quotes in the `ASSERT_HAS() macro.
-// e.g. `ASSERT_HAS(string, item == "foo", string_queue)
+// The ASSERT_DOES_NOT_HAVE() macro allows the SystemVerilog array.find_first with (...) expression
+// to be used to test if an array does not have an item in it.
+//
+// WARNING: Due to SystemVerilog shortcomings, do not put a statement with
+// quotes in the `ASSERT_DOES_NOT_HAVE() macro.
+// e.g. `ASSERT_DOES_NOT_HAVE(string, string_queue, item == "foo") // Don't use a string literal with quotes, like "foo"
 // or
-// `ASSERT_HAS(string, item == my_str, '{"a", "b", "c"})
+// `ASSERT_DOES_NOT_HAVE(string, '{"a", "b", "c"}, item == my_str) // Don't use string literals with quotes, like "a", "b", "c"
+// however
+// `ASSERT_DOES_NOT_HAVE(string, string_queue, item == my_str) // OK
+// is OK
 `define ASSERT_DOES_NOT_HAVE(TYPE, ARRAY, EXPRESSION)                                                   \
     begin                                                                                               \
         TYPE __array_to_search[] = ARRAY;                                                               \
