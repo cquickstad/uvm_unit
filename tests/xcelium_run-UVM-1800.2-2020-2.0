@@ -1,0 +1,53 @@
+#!/bin/bash
+rm -rf out.log
+touch out.log
+
+# UVM_LIB will need to be set to some path, such as the following
+# setenv UVM_LIB /some/path/cadenceINCISIVE/15.20.018/tools.lnx86/methodology/UVM/CDNS-1.2/additions/sv/lib/libuvmdpi.so
+
+function xcelium {
+    xrun                                            \
+        -sv                                         \
+        -timescale 1ps/1ps                          \
+        -uvmhome ../uvm_unit-UVM-1800.2-2020-2.0    \
+        -uvmnoautocompile                           \
+        -uvmnocdnsextra                             \
+        -uvmnoloaddpi                               \
+        -sv_lib $UVM_LIB                            \
+        -incdir ../                                 \
+        -incdir ../uvm_unit-UVM-1800.2-2020-2.0/src \
+        +uvm_unit_log_file=out.log                  \
+        $*
+}
+
+function xcelium_no_uvm {
+    xrun                                    \
+        -sv                                 \
+        -timescale 1ps/1ps                  \
+        -uvmnoautocompile                   \
+        -uvmnocdnsextra                     \
+        -uvmnoloaddpi                       \
+        -incdir ../                         \
+        +uvm_unit_log_file=out.log          \
+        $*
+}
+
+xcelium fixtures_and_assertions_test.sv second_file_test.sv
+xcelium passing_test.sv
+xcelium empty_test.sv
+xcelium one_error_test.sv
+xcelium uvm_warning_error_fatal_test.sv
+xcelium unit_test_run_module_body_test.sv
+xcelium run_phases_test.sv
+xcelium timeout_test.sv
+xcelium sv_test_and_uvm_unit_test.sv
+
+# The module test includes only mod_unit.svh, which should not require UVM
+xcelium_no_uvm rtl_test.sv
+xcelium_no_uvm sv_function_test.sv
+xcelium_no_uvm game_of_life_test.sv
+xcelium_no_uvm property_test.sv
+
+rm -rf xcelium.d/ xrun.history xrun.log tr_db.log
+
+diff -s out.log expected-UVM-1800.2-2020-2.0.log && echo "PASSED" || echo "FAILED"

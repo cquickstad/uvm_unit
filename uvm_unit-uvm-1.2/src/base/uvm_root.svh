@@ -449,7 +449,7 @@ task uvm_root::run_test(string test_name="");
 // UVM_UNIT Modification
 //
 // For uvm_unit we don't want to respond to +UVM_TESTNAME from the command line,
-// as that would totally mess with how uvm_unit runs each unit test.
+// as that would interfere with how uvm_unit runs each unit test.
 //
 // `ifndef UVM_NO_DPI
 

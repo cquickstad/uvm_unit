@@ -18,8 +18,8 @@
 //----------------------------------------------------------------------
 
 // This file was added to UVM in order to provide uvm_unit a single
-// function to call to destroy (nearly) all UVM object instances and
-// global state, leaving behind the UVM objects register with the
+// function call to destroy (nearly) all UVM object instances and
+// global state. It leaves behind the UVM objects registered with the
 // factory, as uvm_unit will need this to be kept around.
 //
 // This function also shows why the singleton design pattern is actually
@@ -32,14 +32,14 @@
 // * Singletons cause code to be tightly coupled. Good software should
 //   loosely coupled with high cohesion. (See
 //   https://en.wikipedia.org/wiki/Coupling_(computer_programming)  )
-// * Carry state around for the lifetime of the application, thereby
-//   breaking unit-testing, which needs each test to be independent
-//   with no dependence on test order.
+// * Singletons carry state around for the lifetime of the application,
+//   thereby breaking unit-testing, which needs each test to be
+//   independent with no dependence on test order.
 // It is a shame OVM and UVM make extensive use of this anti-pattern.
 
 function void destroy_uvm();
-    uvm_coreservice_t   cs;
-    uvm_factory         f;
+    uvm_coreservice_t cs;
+    uvm_factory f;
 
     uvm_phase::destroy();
     uvm_domain::destroy();
@@ -85,7 +85,6 @@ function void destroy_uvm();
     uvm_config_db#(uvm_object_wrapper)::destroy();
     uvm_config_db#(uvm_sequence_library_cfg)::destroy();
     uvm_config_db#(uvm_sequence_lib_mode)::destroy();
-    uvm_config_db#(uvm_sequence_base)::destroy();
     uvm_config_db#(uvm_sequence_base)::destroy();
 
     // Destroy SystemVerilog built-in types in the uvm_config_db

@@ -1,0 +1,67 @@
+#!/bin/bash
+rm -rf out.log
+
+function questa {
+    # vlog's -R option automatically runs all top-level modules and
+    # calling vsim is not required.
+    vlib work && \
+    vlog \
+        +incdir+../+../uvm_unit-uvm-1.2/src \
+        -R \
+            -c \
+            +uvm_unit_log_file=tmp.log \
+            -sv_lib $UVM_LIB \
+            -do "run -all; quit -f" \
+        - \
+        $* \
+        || echo "Questa Failed! : " $* > tmp.log
+
+    # Questa/vsim fails to obey the SystemVerilog $fopen() append behavior.
+    touch out.log
+    if [ -f tmp.log ]; then
+        cat tmp.log >> out.log
+        rm tmp.log
+    fi
+    rm -rf work transcript
+}
+
+function questa_no_uvm {
+    # vlog's -R option automatically runs all top-level modules and
+    # calling vsim is not required.
+    vlib work && \
+    vlog \
+        +incdir+../ \
+        -R \
+            -c \
+            +uvm_unit_log_file=tmp.log \
+            -do "run -all; quit -f" \
+        - \
+        $* \
+        || echo "Questa Failed! : " $* > tmp.log
+
+    # Questa/vsim fails to obey the SystemVerilog $fopen() append behavior.
+    touch out.log
+    if [ -f tmp.log ]; then
+        cat tmp.log >> out.log
+        rm tmp.log
+    fi
+    rm -rf work transcript
+}
+
+questa fixtures_and_assertions_test.sv second_file_test.sv
+questa passing_test.sv
+questa empty_test.sv
+questa one_error_test.sv
+questa uvm_warning_error_fatal_test.sv
+questa unit_test_run_module_body_test.sv
+questa run_phases_test.sv
+questa timeout_test.sv
+questa sv_test_and_uvm_unit_test.sv
+
+# The module test includes only mod_unit.svh, which should not require UVM
+questa_no_uvm rtl_test.sv
+questa_no_uvm sv_function_test.sv
+questa_no_uvm game_of_life_test.sv
+questa_no_uvm property_test.sv
+
+diff -s out.log expected-uvm-1.2.log && echo "PASSED" || echo "FAILED"

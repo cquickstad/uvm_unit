@@ -107,10 +107,13 @@ virtual class uvm_unit_fixture extends uvm_test;
     endfunction
 
     protected virtual function void __get_test_runner();
-        bit result = uvm_config_db#(uvm_unit_test_runner)::get(this, "", "uvm_unit_test_runner", __tr);
-        if (!result || __tr == null) begin
-            $display("UVM_UNIT FATAL ERROR (%s:%0d): Test Runner instance was not found!",
-                `__FILE__, `__LINE__);
+        bit result = uvm_config_db#(uvm_unit_test_runner)::get(null, "", "uvm_unit_test_runner", __tr);
+        if (!result) begin
+            $display("UVM_UNIT FATAL ERROR (%s:%0d): Test Runner instance was not found!", `__FILE__, `__LINE__);
+            $finish();
+        end
+        if (__tr == null) begin
+            $display("UVM_UNIT FATAL ERROR (%s:%0d): Test Runner instance was null!", `__FILE__, `__LINE__);
             $finish();
         end
     endfunction
