@@ -1,32 +1,32 @@
 ================================================================
-UVM_UNIT v1.12
+UVM_UNIT v1.13
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: foo (fixtures_and_assertions_test.sv:40)
+UVM_UNIT TEST STARTING: foo (fixtures_and_assertions_test.sv:40) @0
 UVM_INFO fixtures_and_assertions_test.sv(12) @ 0: uvm_test_top.cut [cut] Hello from build_phase!
 UVM_INFO fixtures_and_assertions_test.sv(17) @ 0: uvm_test_top.cut [cut] Hello from run_phase!
 UVM_INFO fixtures_and_assertions_test.sv(45) @ 5: uvm_test_top [foo] This is a message from unit test foo
 UVM_INFO fixtures_and_assertions_test.sv(22) @ 5: uvm_test_top.cut [cut] Hello from check_phase!
-UVM_UNIT TEST FINISHED: foo (fixtures_and_assertions_test.sv:40) -- PASSED
+UVM_UNIT TEST FINISHED: foo (fixtures_and_assertions_test.sv:40) @5 -- PASSED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: bar (fixtures_and_assertions_test.sv:51)
+UVM_UNIT TEST STARTING: bar (fixtures_and_assertions_test.sv:51) @5
 UVM_INFO fixtures_and_assertions_test.sv(12) @ 5: uvm_test_top.cut [cut] Hello from build_phase!
 UVM_INFO fixtures_and_assertions_test.sv(17) @ 5: uvm_test_top.cut [cut] Hello from run_phase!
 UVM_INFO fixtures_and_assertions_test.sv(56) @ 10: uvm_test_top [bar] This is a message from unit test bar
 UVM_INFO fixtures_and_assertions_test.sv(22) @ 10: uvm_test_top.cut [cut] Hello from check_phase!
-UVM_UNIT TEST FINISHED: bar (fixtures_and_assertions_test.sv:51) -- PASSED
+UVM_UNIT TEST FINISHED: bar (fixtures_and_assertions_test.sv:51) @10 -- PASSED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: a_test_without_a_fixture (fixtures_and_assertions_test.sv:61)
+UVM_UNIT TEST STARTING: a_test_without_a_fixture (fixtures_and_assertions_test.sv:61) @10
 UVM_INFO fixtures_and_assertions_test.sv(66) @ 15: uvm_test_top [a_test_without_a_fixture] This is a message from unit test baz
-UVM_UNIT TEST FINISHED: a_test_without_a_fixture (fixtures_and_assertions_test.sv:61) -- PASSED
+UVM_UNIT TEST FINISHED: a_test_without_a_fixture (fixtures_and_assertions_test.sv:61) @15 -- PASSED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: a_run_phase_test_with_a_fixture (fixtures_and_assertions_test.sv:71)
+UVM_UNIT TEST STARTING: a_run_phase_test_with_a_fixture (fixtures_and_assertions_test.sv:71) @15
 UVM_INFO fixtures_and_assertions_test.sv(12) @ 15: uvm_test_top.cut [cut] Hello from build_phase!
 UVM_INFO fixtures_and_assertions_test.sv(17) @ 15: uvm_test_top.cut [cut] Hello from run_phase!
 UVM_INFO fixtures_and_assertions_test.sv(73) @ 18: uvm_test_top [a_run_phase_test_with_a_fixture] This is a message from a_run_phase_test_with_a_fixture
 UVM_INFO fixtures_and_assertions_test.sv(22) @ 18: uvm_test_top.cut [cut] Hello from check_phase!
-UVM_UNIT TEST FINISHED: a_run_phase_test_with_a_fixture (fixtures_and_assertions_test.sv:71) -- PASSED
+UVM_UNIT TEST FINISHED: a_run_phase_test_with_a_fixture (fixtures_and_assertions_test.sv:71) @18 -- PASSED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: assertions (fixtures_and_assertions_test.sv:76)
+UVM_UNIT TEST STARTING: assertions (fixtures_and_assertions_test.sv:76) @18
 UVM_UNIT: ERROR: fixtures_and_assertions_test.sv:83 @ 19: ASSERT_TRUE(!(1'b1))
 UVM_UNIT: ERROR: fixtures_and_assertions_test.sv:87 @ 21: ASSERT_TRUE_LOG(): a message
 UVM_UNIT: ERROR: fixtures_and_assertions_test.sv:89 @ 22: ASSERT_FALSE(!(1'b0))
@@ -52,14 +52,14 @@ UVM_UNIT: ERROR: fixtures_and_assertions_test.sv:159 @ 57: ASSERT_HAS(int, {2, 3
 UVM_UNIT: ERROR: fixtures_and_assertions_test.sv:166 @ 60: ASSERT_HAS(string, s_q, item == str): 'item == str' not in s_q
 UVM_UNIT: ERROR: fixtures_and_assertions_test.sv:175 @ 64: ASSERT_DOES_NOT_HAVE(int, i_arr, item == 2): 'item == 2' in i_arr
 UVM_UNIT: ERROR: fixtures_and_assertions_test.sv:177 @ 65: ASSERT_DOES_NOT_HAVE(int, {1, 3}, item == 3): 'item == 3' in {1, 3}
-UVM_UNIT TEST FINISHED: assertions (fixtures_and_assertions_test.sv:76) -- FAILED
+UVM_UNIT TEST FINISHED: assertions (fixtures_and_assertions_test.sv:76) @65 -- FAILED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: this_passing_test_is_in_another_file (second_file_test.sv:3)
-UVM_UNIT TEST FINISHED: this_passing_test_is_in_another_file (second_file_test.sv:3) -- PASSED
+UVM_UNIT TEST STARTING: this_passing_test_is_in_another_file (second_file_test.sv:3) @65
+UVM_UNIT TEST FINISHED: this_passing_test_is_in_another_file (second_file_test.sv:3) @65 -- PASSED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: this_failing_test_is_in_another_file (second_file_test.sv:7)
+UVM_UNIT TEST STARTING: this_failing_test_is_in_another_file (second_file_test.sv:7) @65
 UVM_UNIT: ERROR: second_file_test.sv:8 @ 65: ASSERT_FALSE(1)
-UVM_UNIT TEST FINISHED: this_failing_test_is_in_another_file (second_file_test.sv:7) -- FAILED
+UVM_UNIT TEST FINISHED: this_failing_test_is_in_another_file (second_file_test.sv:7) @65 -- FAILED
 ================================================================
 UVM_UNIT: ALL TESTS COMPLETE (7 tests)
 ----------------------------------------------------------------
@@ -75,16 +75,16 @@ UVM_UNIT TEST SUMMARY:
 UVM_UNIT RESULT: FAIL
 ================================================================
 ================================================================
-UVM_UNIT v1.12
+UVM_UNIT v1.13
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: a_passing_unit_test (passing_test.sv:4)
-UVM_UNIT TEST FINISHED: a_passing_unit_test (passing_test.sv:4) -- PASSED
+UVM_UNIT TEST STARTING: a_passing_unit_test (passing_test.sv:4) @0
+UVM_UNIT TEST FINISHED: a_passing_unit_test (passing_test.sv:4) @0 -- PASSED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: another_passing_unit_test (passing_test.sv:8)
-UVM_UNIT TEST FINISHED: another_passing_unit_test (passing_test.sv:8) -- PASSED
+UVM_UNIT TEST STARTING: another_passing_unit_test (passing_test.sv:8) @0
+UVM_UNIT TEST FINISHED: another_passing_unit_test (passing_test.sv:8) @0 -- PASSED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: yet_another_passing_unit_test (passing_test.sv:12)
-UVM_UNIT TEST FINISHED: yet_another_passing_unit_test (passing_test.sv:12) -- PASSED
+UVM_UNIT TEST STARTING: yet_another_passing_unit_test (passing_test.sv:12) @0
+UVM_UNIT TEST FINISHED: yet_another_passing_unit_test (passing_test.sv:12) @0 -- PASSED
 ================================================================
 UVM_UNIT: ALL TESTS COMPLETE (3 tests)
 ----------------------------------------------------------------
@@ -96,7 +96,7 @@ UVM_UNIT TEST SUMMARY:
 UVM_UNIT RESULT: PASS
 ================================================================
 ================================================================
-UVM_UNIT v1.12
+UVM_UNIT v1.13
 ================================================================
 UVM_UNIT: ALL TESTS COMPLETE (0 tests)
 ----------------------------------------------------------------
@@ -108,11 +108,11 @@ UVM_UNIT TEST SUMMARY:
 UVM_UNIT RESULT: PASS
 ================================================================
 ================================================================
-UVM_UNIT v1.12
+UVM_UNIT v1.13
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: one_failing_test (one_error_test.sv:4)
+UVM_UNIT TEST STARTING: one_failing_test (one_error_test.sv:4) @0
 UVM_UNIT: ERROR: one_error_test.sv:5 @ 0: ASSERT_FALSE(1)
-UVM_UNIT TEST FINISHED: one_failing_test (one_error_test.sv:4) -- FAILED
+UVM_UNIT TEST FINISHED: one_failing_test (one_error_test.sv:4) @0 -- FAILED
 ================================================================
 UVM_UNIT: ALL TESTS COMPLETE (1 tests)
 ----------------------------------------------------------------
@@ -127,89 +127,89 @@ UVM_UNIT TEST SUMMARY:
 UVM_UNIT RESULT: FAIL
 ================================================================
 ================================================================
-UVM_UNIT v1.12
+UVM_UNIT v1.13
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: a_test_with_an_unexpected_warning_should_fail (uvm_warning_error_fatal_test.sv:32)
+UVM_UNIT TEST STARTING: a_test_with_an_unexpected_warning_should_fail (uvm_warning_error_fatal_test.sv:32) @0
 UVM_UNIT: ERROR: uvm_warning_error_fatal_test.sv:32 @ 1: UNEXPECTED UVM_WARNING: uvm_warning_error_fatal_test.sv:10 [ID1] Msg1
-UVM_UNIT TEST FINISHED: a_test_with_an_unexpected_warning_should_fail (uvm_warning_error_fatal_test.sv:32) -- FAILED
+UVM_UNIT TEST FINISHED: a_test_with_an_unexpected_warning_should_fail (uvm_warning_error_fatal_test.sv:32) @1 -- FAILED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: a_test_with_an_unexpected_error_should_fail (uvm_warning_error_fatal_test.sv:37)
+UVM_UNIT TEST STARTING: a_test_with_an_unexpected_error_should_fail (uvm_warning_error_fatal_test.sv:37) @1
 UVM_UNIT: ERROR: uvm_warning_error_fatal_test.sv:37 @ 2: UNEXPECTED UVM_ERROR: uvm_warning_error_fatal_test.sv:13 [E1] Err1
-UVM_UNIT TEST FINISHED: a_test_with_an_unexpected_error_should_fail (uvm_warning_error_fatal_test.sv:37) -- FAILED
+UVM_UNIT TEST FINISHED: a_test_with_an_unexpected_error_should_fail (uvm_warning_error_fatal_test.sv:37) @2 -- FAILED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: a_test_with_an_unexpected_fatal_should_fail (uvm_warning_error_fatal_test.sv:42)
+UVM_UNIT TEST STARTING: a_test_with_an_unexpected_fatal_should_fail (uvm_warning_error_fatal_test.sv:42) @2
 UVM_UNIT: ERROR: uvm_warning_error_fatal_test.sv:42 @ 3: UNEXPECTED UVM_FATAL: uvm_warning_error_fatal_test.sv:16 [F1] Ftl1
-UVM_UNIT TEST FINISHED: a_test_with_an_unexpected_fatal_should_fail (uvm_warning_error_fatal_test.sv:42) -- FAILED
+UVM_UNIT TEST FINISHED: a_test_with_an_unexpected_fatal_should_fail (uvm_warning_error_fatal_test.sv:42) @3 -- FAILED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: a_test_with_a_warning_id_that_does_not_match_the_expected_warning_id_should_fail (uvm_warning_error_fatal_test.sv:47)
+UVM_UNIT TEST STARTING: a_test_with_a_warning_id_that_does_not_match_the_expected_warning_id_should_fail (uvm_warning_error_fatal_test.sv:47) @3
 UVM_UNIT: ERROR: uvm_warning_error_fatal_test.sv:47 @ 4: UNEXPECTED UVM_WARNING: uvm_warning_error_fatal_test.sv:10 [FOO] BAR
 UVM_UNIT: ERROR: uvm_warning_error_fatal_test.sv:48 @ 4: UNOBSERVED UVM_WARNING: [blah blah] *
-UVM_UNIT TEST FINISHED: a_test_with_a_warning_id_that_does_not_match_the_expected_warning_id_should_fail (uvm_warning_error_fatal_test.sv:47) -- FAILED
+UVM_UNIT TEST FINISHED: a_test_with_a_warning_id_that_does_not_match_the_expected_warning_id_should_fail (uvm_warning_error_fatal_test.sv:47) @4 -- FAILED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: a_test_with_a_error_id_that_does_not_match_the_expected_error_id_should_fail (uvm_warning_error_fatal_test.sv:53)
+UVM_UNIT TEST STARTING: a_test_with_a_error_id_that_does_not_match_the_expected_error_id_should_fail (uvm_warning_error_fatal_test.sv:53) @4
 UVM_UNIT: ERROR: uvm_warning_error_fatal_test.sv:53 @ 5: UNEXPECTED UVM_ERROR: uvm_warning_error_fatal_test.sv:13 [FOO] BAR
 UVM_UNIT: ERROR: uvm_warning_error_fatal_test.sv:54 @ 5: UNOBSERVED UVM_ERROR: [blah blah] *
-UVM_UNIT TEST FINISHED: a_test_with_a_error_id_that_does_not_match_the_expected_error_id_should_fail (uvm_warning_error_fatal_test.sv:53) -- FAILED
+UVM_UNIT TEST FINISHED: a_test_with_a_error_id_that_does_not_match_the_expected_error_id_should_fail (uvm_warning_error_fatal_test.sv:53) @5 -- FAILED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: a_test_with_a_fatal_id_that_does_not_match_the_expected_fatal_id_should_fail (uvm_warning_error_fatal_test.sv:59)
+UVM_UNIT TEST STARTING: a_test_with_a_fatal_id_that_does_not_match_the_expected_fatal_id_should_fail (uvm_warning_error_fatal_test.sv:59) @5
 UVM_UNIT: ERROR: uvm_warning_error_fatal_test.sv:59 @ 6: UNEXPECTED UVM_FATAL: uvm_warning_error_fatal_test.sv:16 [FOO] BAR
 UVM_UNIT: ERROR: uvm_warning_error_fatal_test.sv:60 @ 6: UNOBSERVED UVM_FATAL: [blah blah] *
-UVM_UNIT TEST FINISHED: a_test_with_a_fatal_id_that_does_not_match_the_expected_fatal_id_should_fail (uvm_warning_error_fatal_test.sv:59) -- FAILED
+UVM_UNIT TEST FINISHED: a_test_with_a_fatal_id_that_does_not_match_the_expected_fatal_id_should_fail (uvm_warning_error_fatal_test.sv:59) @6 -- FAILED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: a_test_with_a_warning_msg_that_does_not_match_the_expected_warning_msg_should_fail (uvm_warning_error_fatal_test.sv:65)
+UVM_UNIT TEST STARTING: a_test_with_a_warning_msg_that_does_not_match_the_expected_warning_msg_should_fail (uvm_warning_error_fatal_test.sv:65) @6
 UVM_UNIT: ERROR: uvm_warning_error_fatal_test.sv:65 @ 7: UNEXPECTED UVM_WARNING: uvm_warning_error_fatal_test.sv:10 [FOO] BAR
 UVM_UNIT: ERROR: uvm_warning_error_fatal_test.sv:66 @ 7: UNOBSERVED UVM_WARNING: [*] blah blah
-UVM_UNIT TEST FINISHED: a_test_with_a_warning_msg_that_does_not_match_the_expected_warning_msg_should_fail (uvm_warning_error_fatal_test.sv:65) -- FAILED
+UVM_UNIT TEST FINISHED: a_test_with_a_warning_msg_that_does_not_match_the_expected_warning_msg_should_fail (uvm_warning_error_fatal_test.sv:65) @7 -- FAILED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: a_test_with_a_error_msg_that_does_not_match_the_expected_error_msg_should_fail (uvm_warning_error_fatal_test.sv:71)
+UVM_UNIT TEST STARTING: a_test_with_a_error_msg_that_does_not_match_the_expected_error_msg_should_fail (uvm_warning_error_fatal_test.sv:71) @7
 UVM_UNIT: ERROR: uvm_warning_error_fatal_test.sv:71 @ 8: UNEXPECTED UVM_ERROR: uvm_warning_error_fatal_test.sv:13 [FOO] BAR
 UVM_UNIT: ERROR: uvm_warning_error_fatal_test.sv:72 @ 8: UNOBSERVED UVM_ERROR: [*] blah blah
-UVM_UNIT TEST FINISHED: a_test_with_a_error_msg_that_does_not_match_the_expected_error_msg_should_fail (uvm_warning_error_fatal_test.sv:71) -- FAILED
+UVM_UNIT TEST FINISHED: a_test_with_a_error_msg_that_does_not_match_the_expected_error_msg_should_fail (uvm_warning_error_fatal_test.sv:71) @8 -- FAILED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: a_test_with_a_fatal_msg_that_does_not_match_the_expected_fatal_msg_should_fail (uvm_warning_error_fatal_test.sv:77)
+UVM_UNIT TEST STARTING: a_test_with_a_fatal_msg_that_does_not_match_the_expected_fatal_msg_should_fail (uvm_warning_error_fatal_test.sv:77) @8
 UVM_UNIT: ERROR: uvm_warning_error_fatal_test.sv:77 @ 9: UNEXPECTED UVM_FATAL: uvm_warning_error_fatal_test.sv:16 [FOO] BAR
 UVM_UNIT: ERROR: uvm_warning_error_fatal_test.sv:78 @ 9: UNOBSERVED UVM_FATAL: [*] blah blah
-UVM_UNIT TEST FINISHED: a_test_with_a_fatal_msg_that_does_not_match_the_expected_fatal_msg_should_fail (uvm_warning_error_fatal_test.sv:77) -- FAILED
+UVM_UNIT TEST FINISHED: a_test_with_a_fatal_msg_that_does_not_match_the_expected_fatal_msg_should_fail (uvm_warning_error_fatal_test.sv:77) @9 -- FAILED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: a_test_with_a_warning_id_msg_that_does_not_match_the_expected_warning_id_msg_should_fail (uvm_warning_error_fatal_test.sv:83)
+UVM_UNIT TEST STARTING: a_test_with_a_warning_id_msg_that_does_not_match_the_expected_warning_id_msg_should_fail (uvm_warning_error_fatal_test.sv:83) @9
 UVM_UNIT: ERROR: uvm_warning_error_fatal_test.sv:83 @ 10: UNEXPECTED UVM_WARNING: uvm_warning_error_fatal_test.sv:10 [FOO] BAR
 UVM_UNIT: ERROR: uvm_warning_error_fatal_test.sv:84 @ 10: UNOBSERVED UVM_WARNING: [BAR] FOO
-UVM_UNIT TEST FINISHED: a_test_with_a_warning_id_msg_that_does_not_match_the_expected_warning_id_msg_should_fail (uvm_warning_error_fatal_test.sv:83) -- FAILED
+UVM_UNIT TEST FINISHED: a_test_with_a_warning_id_msg_that_does_not_match_the_expected_warning_id_msg_should_fail (uvm_warning_error_fatal_test.sv:83) @10 -- FAILED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: a_test_with_a_error_id_msg_that_does_not_match_the_expected_error_id_msg_should_fail (uvm_warning_error_fatal_test.sv:89)
+UVM_UNIT TEST STARTING: a_test_with_a_error_id_msg_that_does_not_match_the_expected_error_id_msg_should_fail (uvm_warning_error_fatal_test.sv:89) @10
 UVM_UNIT: ERROR: uvm_warning_error_fatal_test.sv:89 @ 11: UNEXPECTED UVM_ERROR: uvm_warning_error_fatal_test.sv:13 [FOO] BAR
 UVM_UNIT: ERROR: uvm_warning_error_fatal_test.sv:90 @ 11: UNOBSERVED UVM_ERROR: [BAR] FOO
-UVM_UNIT TEST FINISHED: a_test_with_a_error_id_msg_that_does_not_match_the_expected_error_id_msg_should_fail (uvm_warning_error_fatal_test.sv:89) -- FAILED
+UVM_UNIT TEST FINISHED: a_test_with_a_error_id_msg_that_does_not_match_the_expected_error_id_msg_should_fail (uvm_warning_error_fatal_test.sv:89) @11 -- FAILED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: a_test_with_a_fatal_id_msg_that_does_not_match_the_expected_fatal_id_msg_should_fail (uvm_warning_error_fatal_test.sv:95)
+UVM_UNIT TEST STARTING: a_test_with_a_fatal_id_msg_that_does_not_match_the_expected_fatal_id_msg_should_fail (uvm_warning_error_fatal_test.sv:95) @11
 UVM_UNIT: ERROR: uvm_warning_error_fatal_test.sv:95 @ 12: UNEXPECTED UVM_FATAL: uvm_warning_error_fatal_test.sv:16 [FOO] BAR
 UVM_UNIT: ERROR: uvm_warning_error_fatal_test.sv:96 @ 12: UNOBSERVED UVM_FATAL: [BAR] FOO
-UVM_UNIT TEST FINISHED: a_test_with_a_fatal_id_msg_that_does_not_match_the_expected_fatal_id_msg_should_fail (uvm_warning_error_fatal_test.sv:95) -- FAILED
+UVM_UNIT TEST FINISHED: a_test_with_a_fatal_id_msg_that_does_not_match_the_expected_fatal_id_msg_should_fail (uvm_warning_error_fatal_test.sv:95) @12 -- FAILED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: an_expected_warning_that_never_happens_should_fail (uvm_warning_error_fatal_test.sv:101)
+UVM_UNIT TEST STARTING: an_expected_warning_that_never_happens_should_fail (uvm_warning_error_fatal_test.sv:101) @12
 UVM_UNIT: ERROR: uvm_warning_error_fatal_test.sv:102 @ 22: UNOBSERVED UVM_WARNING: [FOO] *
-UVM_UNIT TEST FINISHED: an_expected_warning_that_never_happens_should_fail (uvm_warning_error_fatal_test.sv:101) -- FAILED
+UVM_UNIT TEST FINISHED: an_expected_warning_that_never_happens_should_fail (uvm_warning_error_fatal_test.sv:101) @22 -- FAILED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: an_expected_error_that_never_happens_should_fail (uvm_warning_error_fatal_test.sv:106)
+UVM_UNIT TEST STARTING: an_expected_error_that_never_happens_should_fail (uvm_warning_error_fatal_test.sv:106) @22
 UVM_UNIT: ERROR: uvm_warning_error_fatal_test.sv:107 @ 32: UNOBSERVED UVM_ERROR: [BAR] *
-UVM_UNIT TEST FINISHED: an_expected_error_that_never_happens_should_fail (uvm_warning_error_fatal_test.sv:106) -- FAILED
+UVM_UNIT TEST FINISHED: an_expected_error_that_never_happens_should_fail (uvm_warning_error_fatal_test.sv:106) @32 -- FAILED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: an_expected_fatal_that_never_happens_should_fail (uvm_warning_error_fatal_test.sv:111)
+UVM_UNIT TEST STARTING: an_expected_fatal_that_never_happens_should_fail (uvm_warning_error_fatal_test.sv:111) @32
 UVM_UNIT: ERROR: uvm_warning_error_fatal_test.sv:112 @ 42: UNOBSERVED UVM_FATAL: [BAZ] *
-UVM_UNIT TEST FINISHED: an_expected_fatal_that_never_happens_should_fail (uvm_warning_error_fatal_test.sv:111) -- FAILED
+UVM_UNIT TEST FINISHED: an_expected_fatal_that_never_happens_should_fail (uvm_warning_error_fatal_test.sv:111) @42 -- FAILED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: messages_of_different_severity_seen_out_of_the_expected_order_should_fail (uvm_warning_error_fatal_test.sv:116)
+UVM_UNIT TEST STARTING: messages_of_different_severity_seen_out_of_the_expected_order_should_fail (uvm_warning_error_fatal_test.sv:116) @42
 UVM_UNIT: ERROR: uvm_warning_error_fatal_test.sv:116 @ 52: UNEXPECTED UVM_ERROR: uvm_warning_error_fatal_test.sv:13 [BAR] x
 UVM_UNIT: ERROR: uvm_warning_error_fatal_test.sv:118 @ 52: UNOBSERVED UVM_ERROR: [BAR] *
-UVM_UNIT TEST FINISHED: messages_of_different_severity_seen_out_of_the_expected_order_should_fail (uvm_warning_error_fatal_test.sv:116) -- FAILED
+UVM_UNIT TEST FINISHED: messages_of_different_severity_seen_out_of_the_expected_order_should_fail (uvm_warning_error_fatal_test.sv:116) @52 -- FAILED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: id_and_msg_expected_for_a_different_severity_should_fail (uvm_warning_error_fatal_test.sv:124)
+UVM_UNIT TEST STARTING: id_and_msg_expected_for_a_different_severity_should_fail (uvm_warning_error_fatal_test.sv:124) @52
 UVM_UNIT: ERROR: uvm_warning_error_fatal_test.sv:124 @ 62: UNEXPECTED UVM_ERROR: uvm_warning_error_fatal_test.sv:13 [FOO] BAR
 UVM_UNIT: ERROR: uvm_warning_error_fatal_test.sv:125 @ 62: UNOBSERVED UVM_FATAL: [FOO] BAR
-UVM_UNIT TEST FINISHED: id_and_msg_expected_for_a_different_severity_should_fail (uvm_warning_error_fatal_test.sv:124) -- FAILED
+UVM_UNIT TEST FINISHED: id_and_msg_expected_for_a_different_severity_should_fail (uvm_warning_error_fatal_test.sv:124) @62 -- FAILED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: a_test_with_expected_mesages_in_the_expected_order_should_pass (uvm_warning_error_fatal_test.sv:130)
-UVM_UNIT TEST FINISHED: a_test_with_expected_mesages_in_the_expected_order_should_pass (uvm_warning_error_fatal_test.sv:130) -- PASSED
+UVM_UNIT TEST STARTING: a_test_with_expected_mesages_in_the_expected_order_should_pass (uvm_warning_error_fatal_test.sv:130) @62
+UVM_UNIT TEST FINISHED: a_test_with_expected_mesages_in_the_expected_order_should_pass (uvm_warning_error_fatal_test.sv:130) @62 -- PASSED
 ================================================================
 UVM_UNIT: ALL TESTS COMPLETE (18 tests)
 ----------------------------------------------------------------
@@ -240,11 +240,11 @@ UVM_UNIT TEST SUMMARY:
 UVM_UNIT RESULT: FAIL
 ================================================================
 ================================================================
-UVM_UNIT v1.12
+UVM_UNIT v1.13
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: uvm_unit_top_module_body_test (unit_test_run_module_body_test.sv:14)
+UVM_UNIT TEST STARTING: uvm_unit_top_module_body_test (unit_test_run_module_body_test.sv:14) @0
 UVM_UNIT: ERROR: unit_test_run_module_body_test.sv:16 @ 0: ASSERT_NULL(vi)
-UVM_UNIT TEST FINISHED: uvm_unit_top_module_body_test (unit_test_run_module_body_test.sv:14) -- FAILED
+UVM_UNIT TEST FINISHED: uvm_unit_top_module_body_test (unit_test_run_module_body_test.sv:14) @0 -- FAILED
 ================================================================
 UVM_UNIT: ALL TESTS COMPLETE (1 tests)
 ----------------------------------------------------------------
@@ -259,9 +259,9 @@ UVM_UNIT TEST SUMMARY:
 UVM_UNIT RESULT: FAIL
 ================================================================
 ================================================================
-UVM_UNIT v1.12
+UVM_UNIT v1.13
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: phase_test_1 (run_phases_test.sv:63)
+UVM_UNIT TEST STARTING: phase_test_1 (run_phases_test.sv:63) @0
 UVM_INFO run_phases_test.sv(15) @ 0: uvm_test_top.cut [cut] message from build
 UVM_INFO run_phases_test.sv(16) @ 0: uvm_test_top.cut [cut] message from connect
 UVM_INFO run_phases_test.sv(17) @ 0: uvm_test_top.cut [cut] message from end_of_elaboration
@@ -283,9 +283,9 @@ UVM_INFO run_phases_test.sv(18) @ 20: uvm_test_top.cut [cut] message from extrac
 UVM_INFO run_phases_test.sv(19) @ 20: uvm_test_top.cut [cut] message from check
 UVM_INFO run_phases_test.sv(20) @ 20: uvm_test_top.cut [cut] message from report
 UVM_INFO run_phases_test.sv(21) @ 20: uvm_test_top.cut [cut] message from final
-UVM_UNIT TEST FINISHED: phase_test_1 (run_phases_test.sv:63) -- PASSED
+UVM_UNIT TEST FINISHED: phase_test_1 (run_phases_test.sv:63) @20 -- PASSED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: phase_test_2 (run_phases_test.sv:68)
+UVM_UNIT TEST STARTING: phase_test_2 (run_phases_test.sv:68) @20
 UVM_INFO run_phases_test.sv(15) @ 20: uvm_test_top.cut [cut] message from build
 UVM_INFO run_phases_test.sv(16) @ 20: uvm_test_top.cut [cut] message from connect
 UVM_INFO run_phases_test.sv(17) @ 20: uvm_test_top.cut [cut] message from end_of_elaboration
@@ -307,7 +307,7 @@ UVM_INFO run_phases_test.sv(18) @ 40: uvm_test_top.cut [cut] message from extrac
 UVM_INFO run_phases_test.sv(19) @ 40: uvm_test_top.cut [cut] message from check
 UVM_INFO run_phases_test.sv(20) @ 40: uvm_test_top.cut [cut] message from report
 UVM_INFO run_phases_test.sv(21) @ 40: uvm_test_top.cut [cut] message from final
-UVM_UNIT TEST FINISHED: phase_test_2 (run_phases_test.sv:68) -- PASSED
+UVM_UNIT TEST FINISHED: phase_test_2 (run_phases_test.sv:68) @40 -- PASSED
 ================================================================
 UVM_UNIT: ALL TESTS COMPLETE (2 tests)
 ----------------------------------------------------------------
@@ -319,13 +319,13 @@ UVM_UNIT TEST SUMMARY:
 UVM_UNIT RESULT: PASS
 ================================================================
 ================================================================
-UVM_UNIT v1.12
+UVM_UNIT v1.13
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: this_test_will_timout_and_cause_an_unexpected_uvm_error_and_fail (timeout_test.sv:5)
+UVM_UNIT TEST STARTING: this_test_will_timout_and_cause_an_unexpected_uvm_error_and_fail (timeout_test.sv:5) @0
 UVM_INFO timeout_test.sv(8) @ 100: uvm_test_top [uvm_test_top] Almost there!
 UVM_UNIT: ERROR: timeout_test.sv:5 @ 100: UNEXPECTED UVM_FATAL: ../uvm_unit-uvm-1.2/src/base/uvm_phase.svh:1514 [PH_TIMEOUT] Explicit timeout of 100 hit, indicating a probable testbench issue
 UVM_UNIT: ERROR: timeout_test.sv:5 @ 100: UNEXPECTED UVM_WARNING: :0 [OBJTN_CLEAR] Object 'uvm_top' cleared objection counts for run
-UVM_UNIT TEST FINISHED: this_test_will_timout_and_cause_an_unexpected_uvm_error_and_fail (timeout_test.sv:5) -- FAILED
+UVM_UNIT TEST FINISHED: this_test_will_timout_and_cause_an_unexpected_uvm_error_and_fail (timeout_test.sv:5) @100 -- FAILED
 ================================================================
 UVM_UNIT: ALL TESTS COMPLETE (1 tests)
 ----------------------------------------------------------------
@@ -340,28 +340,28 @@ UVM_UNIT TEST SUMMARY:
 UVM_UNIT RESULT: FAIL
 ================================================================
 ================================================================
-UVM_UNIT v1.12
+UVM_UNIT v1.13
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: passing_sv_test (sv_test_and_uvm_unit_test.sv:13)
-UVM_UNIT TEST FINISHED: passing_sv_test (sv_test_and_uvm_unit_test.sv:13) -- PASSED
+UVM_UNIT TEST STARTING: passing_sv_test (sv_test_and_uvm_unit_test.sv:13) @0
+UVM_UNIT TEST FINISHED: passing_sv_test (sv_test_and_uvm_unit_test.sv:13) @0 -- PASSED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: failing_sv_test (sv_test_and_uvm_unit_test.sv:17)
+UVM_UNIT TEST STARTING: failing_sv_test (sv_test_and_uvm_unit_test.sv:17) @0
 UVM_UNIT: ERROR: sv_test_and_uvm_unit_test.sv:18 @ 0: ASSERT_TRUE(0)
-UVM_UNIT TEST FINISHED: failing_sv_test (sv_test_and_uvm_unit_test.sv:17) -- FAILED
+UVM_UNIT TEST FINISHED: failing_sv_test (sv_test_and_uvm_unit_test.sv:17) @0 -- FAILED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: passing_sv_test_in_module (sv_test_and_uvm_unit_test.sv:4)
-UVM_UNIT TEST FINISHED: passing_sv_test_in_module (sv_test_and_uvm_unit_test.sv:4) -- PASSED
+UVM_UNIT TEST STARTING: passing_sv_test_in_module (sv_test_and_uvm_unit_test.sv:4) @0
+UVM_UNIT TEST FINISHED: passing_sv_test_in_module (sv_test_and_uvm_unit_test.sv:4) @0 -- PASSED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: failing_sv_test_in_module (sv_test_and_uvm_unit_test.sv:8)
+UVM_UNIT TEST STARTING: failing_sv_test_in_module (sv_test_and_uvm_unit_test.sv:8) @0
 UVM_UNIT: ERROR: sv_test_and_uvm_unit_test.sv:9 @ 0: ASSERT_TRUE(0)
-UVM_UNIT TEST FINISHED: failing_sv_test_in_module (sv_test_and_uvm_unit_test.sv:8) -- FAILED
+UVM_UNIT TEST FINISHED: failing_sv_test_in_module (sv_test_and_uvm_unit_test.sv:8) @0 -- FAILED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: passing_uvm_test (sv_test_and_uvm_unit_test.sv:21)
-UVM_UNIT TEST FINISHED: passing_uvm_test (sv_test_and_uvm_unit_test.sv:21) -- PASSED
+UVM_UNIT TEST STARTING: passing_uvm_test (sv_test_and_uvm_unit_test.sv:21) @0
+UVM_UNIT TEST FINISHED: passing_uvm_test (sv_test_and_uvm_unit_test.sv:21) @0 -- PASSED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: failing_uvm_test (sv_test_and_uvm_unit_test.sv:25)
+UVM_UNIT TEST STARTING: failing_uvm_test (sv_test_and_uvm_unit_test.sv:25) @0
 UVM_UNIT: ERROR: sv_test_and_uvm_unit_test.sv:26 @ 0: ASSERT_TRUE(0)
-UVM_UNIT TEST FINISHED: failing_uvm_test (sv_test_and_uvm_unit_test.sv:25) -- FAILED
+UVM_UNIT TEST FINISHED: failing_uvm_test (sv_test_and_uvm_unit_test.sv:25) @0 -- FAILED
 ================================================================
 UVM_UNIT: ALL TESTS COMPLETE (6 tests)
 ----------------------------------------------------------------
@@ -378,24 +378,24 @@ UVM_UNIT TEST SUMMARY:
 UVM_UNIT RESULT: FAIL
 ================================================================
 ================================================================
-UVM_UNIT v1.12
+UVM_UNIT v1.13
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: test_that_reset_clears_output (rtl_test.sv:41)
-UVM_UNIT TEST FINISHED: test_that_reset_clears_output (rtl_test.sv:41) -- PASSED
+UVM_UNIT TEST STARTING: test_that_reset_clears_output (rtl_test.sv:41) @0
+UVM_UNIT TEST FINISHED: test_that_reset_clears_output (rtl_test.sv:41) @4 -- PASSED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: clk_x (rtl_test.sv:60)
+UVM_UNIT TEST STARTING: clk_x (rtl_test.sv:60) @4
 UVM_UNIT: ERROR: rtl_test.sv:71 @ 8: ASSERT_EQ(q, 1'bX): 'h0 !== 'hx
-UVM_UNIT TEST FINISHED: clk_x (rtl_test.sv:60) -- FAILED
+UVM_UNIT TEST FINISHED: clk_x (rtl_test.sv:60) @8 -- FAILED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: test_that_zero_and_one_propagate (rtl_test.sv:125)
+UVM_UNIT TEST STARTING: test_that_zero_and_one_propagate (rtl_test.sv:125) @8
 UVM_UNIT: ERROR: rtl_test.sv:130 @ 38: ASSERT_EQ(q, 0): 'h1 !== 'h0
 UVM_UNIT: ERROR: rtl_test.sv:134 @ 48: ASSERT_EQ(q, 1): 'h0 !== 'h1
-UVM_UNIT TEST FINISHED: test_that_zero_and_one_propagate (rtl_test.sv:125) -- FAILED
+UVM_UNIT TEST FINISHED: test_that_zero_and_one_propagate (rtl_test.sv:125) @148 -- FAILED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: test_that_X_and_Z_propagate (rtl_test.sv:137)
+UVM_UNIT TEST STARTING: test_that_X_and_Z_propagate (rtl_test.sv:137) @148
 UVM_UNIT: ERROR: rtl_test.sv:142 @ 178: ASSERT_EQ(q, 1'bZ): 'hx !== 'hz
 UVM_UNIT: ERROR: rtl_test.sv:146 @ 188: ASSERT_EQ(q, 1'bX): 'hz !== 'hx
-UVM_UNIT TEST FINISHED: test_that_X_and_Z_propagate (rtl_test.sv:137) -- FAILED
+UVM_UNIT TEST FINISHED: test_that_X_and_Z_propagate (rtl_test.sv:137) @288 -- FAILED
 ================================================================
 UVM_UNIT: ALL TESTS COMPLETE (4 tests)
 ----------------------------------------------------------------
@@ -412,19 +412,19 @@ UVM_UNIT TEST SUMMARY:
 UVM_UNIT RESULT: FAIL
 ================================================================
 ================================================================
-UVM_UNIT v1.12
+UVM_UNIT v1.13
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: zero_one_two_cases (sv_function_test.sv:15)
-UVM_UNIT TEST FINISHED: zero_one_two_cases (sv_function_test.sv:15) -- PASSED
+UVM_UNIT TEST STARTING: zero_one_two_cases (sv_function_test.sv:15) @0
+UVM_UNIT TEST FINISHED: zero_one_two_cases (sv_function_test.sv:15) @0 -- PASSED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: fizz_cases (sv_function_test.sv:21)
-UVM_UNIT TEST FINISHED: fizz_cases (sv_function_test.sv:21) -- PASSED
+UVM_UNIT TEST STARTING: fizz_cases (sv_function_test.sv:21) @0
+UVM_UNIT TEST FINISHED: fizz_cases (sv_function_test.sv:21) @0 -- PASSED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: buzz_cases (sv_function_test.sv:26)
-UVM_UNIT TEST FINISHED: buzz_cases (sv_function_test.sv:26) -- PASSED
+UVM_UNIT TEST STARTING: buzz_cases (sv_function_test.sv:26) @0
+UVM_UNIT TEST FINISHED: buzz_cases (sv_function_test.sv:26) @0 -- PASSED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: fizzbuzz_cases (sv_function_test.sv:31)
-UVM_UNIT TEST FINISHED: fizzbuzz_cases (sv_function_test.sv:31) -- PASSED
+UVM_UNIT TEST STARTING: fizzbuzz_cases (sv_function_test.sv:31) @0
+UVM_UNIT TEST FINISHED: fizzbuzz_cases (sv_function_test.sv:31) @0 -- PASSED
 ================================================================
 UVM_UNIT: ALL TESTS COMPLETE (4 tests)
 ----------------------------------------------------------------
@@ -436,46 +436,46 @@ UVM_UNIT TEST SUMMARY:
 UVM_UNIT RESULT: PASS
 ================================================================
 ================================================================
-UVM_UNIT v1.12
+UVM_UNIT v1.13
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: pos_neighbors (game_of_life_test.sv:160)
-UVM_UNIT TEST FINISHED: pos_neighbors (game_of_life_test.sv:160) -- PASSED
+UVM_UNIT TEST STARTING: pos_neighbors (game_of_life_test.sv:160) @0
+UVM_UNIT TEST FINISHED: pos_neighbors (game_of_life_test.sv:160) @0 -- PASSED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: pos_hash (game_of_life_test.sv:175)
-UVM_UNIT TEST FINISHED: pos_hash (game_of_life_test.sv:175) -- PASSED
+UVM_UNIT TEST STARTING: pos_hash (game_of_life_test.sv:175) @0
+UVM_UNIT TEST FINISHED: pos_hash (game_of_life_test.sv:175) @0 -- PASSED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: uninitialized_world_is_empty (game_of_life_test.sv:185)
-UVM_UNIT TEST FINISHED: uninitialized_world_is_empty (game_of_life_test.sv:185) -- PASSED
+UVM_UNIT TEST STARTING: uninitialized_world_is_empty (game_of_life_test.sv:185) @0
+UVM_UNIT TEST FINISHED: uninitialized_world_is_empty (game_of_life_test.sv:185) @0 -- PASSED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: a_cell_can_be_made_alive_and_dead (game_of_life_test.sv:190)
-UVM_UNIT TEST FINISHED: a_cell_can_be_made_alive_and_dead (game_of_life_test.sv:190) -- PASSED
+UVM_UNIT TEST STARTING: a_cell_can_be_made_alive_and_dead (game_of_life_test.sv:190) @0
+UVM_UNIT TEST FINISHED: a_cell_can_be_made_alive_and_dead (game_of_life_test.sv:190) @0 -- PASSED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: input_to_the_make_alive_method_is_copied (game_of_life_test.sv:202)
-UVM_UNIT TEST FINISHED: input_to_the_make_alive_method_is_copied (game_of_life_test.sv:202) -- PASSED
+UVM_UNIT TEST STARTING: input_to_the_make_alive_method_is_copied (game_of_life_test.sv:202) @0
+UVM_UNIT TEST FINISHED: input_to_the_make_alive_method_is_copied (game_of_life_test.sv:202) @0 -- PASSED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: getting_alive_neighbors (game_of_life_test.sv:211)
-UVM_UNIT TEST FINISHED: getting_alive_neighbors (game_of_life_test.sv:211) -- PASSED
+UVM_UNIT TEST STARTING: getting_alive_neighbors (game_of_life_test.sv:211) @0
+UVM_UNIT TEST FINISHED: getting_alive_neighbors (game_of_life_test.sv:211) @0 -- PASSED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: alive_cell_with_two_neighbors_lives_on_by_status_quo (game_of_life_test.sv:303)
-UVM_UNIT TEST FINISHED: alive_cell_with_two_neighbors_lives_on_by_status_quo (game_of_life_test.sv:303) -- PASSED
+UVM_UNIT TEST STARTING: alive_cell_with_two_neighbors_lives_on_by_status_quo (game_of_life_test.sv:303) @0
+UVM_UNIT TEST FINISHED: alive_cell_with_two_neighbors_lives_on_by_status_quo (game_of_life_test.sv:303) @0 -- PASSED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: dead_cell_with_two_neighbors_remains_dead_by_status_quo (game_of_life_test.sv:314)
-UVM_UNIT TEST FINISHED: dead_cell_with_two_neighbors_remains_dead_by_status_quo (game_of_life_test.sv:314) -- PASSED
+UVM_UNIT TEST STARTING: dead_cell_with_two_neighbors_remains_dead_by_status_quo (game_of_life_test.sv:314) @0
+UVM_UNIT TEST FINISHED: dead_cell_with_two_neighbors_remains_dead_by_status_quo (game_of_life_test.sv:314) @0 -- PASSED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: dead_cell_with_three_neighbors_becomes_alive_as_if_by_reproduction (game_of_life_test.sv:324)
-UVM_UNIT TEST FINISHED: dead_cell_with_three_neighbors_becomes_alive_as_if_by_reproduction (game_of_life_test.sv:324) -- PASSED
+UVM_UNIT TEST STARTING: dead_cell_with_three_neighbors_becomes_alive_as_if_by_reproduction (game_of_life_test.sv:324) @0
+UVM_UNIT TEST FINISHED: dead_cell_with_three_neighbors_becomes_alive_as_if_by_reproduction (game_of_life_test.sv:324) @0 -- PASSED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: alive_cell_with_zero_neighbors_dies_as_if_by_underpopulation (game_of_life_test.sv:345)
-UVM_UNIT TEST FINISHED: alive_cell_with_zero_neighbors_dies_as_if_by_underpopulation (game_of_life_test.sv:345) -- PASSED
+UVM_UNIT TEST STARTING: alive_cell_with_zero_neighbors_dies_as_if_by_underpopulation (game_of_life_test.sv:345) @0
+UVM_UNIT TEST FINISHED: alive_cell_with_zero_neighbors_dies_as_if_by_underpopulation (game_of_life_test.sv:345) @0 -- PASSED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: alive_cell_with_one_neighbor_dies_as_if_by_underpopulation (game_of_life_test.sv:354)
-UVM_UNIT TEST FINISHED: alive_cell_with_one_neighbor_dies_as_if_by_underpopulation (game_of_life_test.sv:354) -- PASSED
+UVM_UNIT TEST STARTING: alive_cell_with_one_neighbor_dies_as_if_by_underpopulation (game_of_life_test.sv:354) @0
+UVM_UNIT TEST FINISHED: alive_cell_with_one_neighbor_dies_as_if_by_underpopulation (game_of_life_test.sv:354) @0 -- PASSED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: alive_cell_with_four_neighbors_dies_as_if_by_overpopulation (game_of_life_test.sv:364)
-UVM_UNIT TEST FINISHED: alive_cell_with_four_neighbors_dies_as_if_by_overpopulation (game_of_life_test.sv:364) -- PASSED
+UVM_UNIT TEST STARTING: alive_cell_with_four_neighbors_dies_as_if_by_overpopulation (game_of_life_test.sv:364) @0
+UVM_UNIT TEST FINISHED: alive_cell_with_four_neighbors_dies_as_if_by_overpopulation (game_of_life_test.sv:364) @0 -- PASSED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: alive_cell_with_eight_neighbors_dies_as_if_by_overpopulation (game_of_life_test.sv:378)
-UVM_UNIT TEST FINISHED: alive_cell_with_eight_neighbors_dies_as_if_by_overpopulation (game_of_life_test.sv:378) -- PASSED
+UVM_UNIT TEST STARTING: alive_cell_with_eight_neighbors_dies_as_if_by_overpopulation (game_of_life_test.sv:378) @0
+UVM_UNIT TEST FINISHED: alive_cell_with_eight_neighbors_dies_as_if_by_overpopulation (game_of_life_test.sv:378) @0 -- PASSED
 ================================================================
 UVM_UNIT: ALL TESTS COMPLETE (13 tests)
 ----------------------------------------------------------------
@@ -487,27 +487,27 @@ UVM_UNIT TEST SUMMARY:
 UVM_UNIT RESULT: PASS
 ================================================================
 ================================================================
-UVM_UNIT v1.12
+UVM_UNIT v1.13
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: property_fails_test (property_test.sv:17)
-UVM_UNIT TEST FINISHED: property_fails_test (property_test.sv:17) -- PASSED
+UVM_UNIT TEST STARTING: property_fails_test (property_test.sv:17) @0
+UVM_UNIT TEST FINISHED: property_fails_test (property_test.sv:17) @90 -- PASSED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: property_passes_test (property_test.sv:56)
-UVM_UNIT TEST FINISHED: property_passes_test (property_test.sv:56) -- PASSED
+UVM_UNIT TEST STARTING: property_passes_test (property_test.sv:56) @90
+UVM_UNIT TEST FINISHED: property_passes_test (property_test.sv:56) @250 -- PASSED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: failing_property_test_1 (property_test.sv:69)
+UVM_UNIT TEST STARTING: failing_property_test_1 (property_test.sv:69) @250
 UVM_UNIT: ERROR: property_test.sv:77 @ 410: ASSERT_PROPERTY_PASS_COUNT(a_and_b_together, 0): 1 !== 0
 UVM_UNIT: ERROR: property_test.sv:78 @ 410: ASSERT_PROPERTY_FAIL_COUNT(a_and_b_together, 1): 0 !== 1
 UVM_UNIT: ERROR: property_test.sv:79 @ 410: ASSERT_PROPERTY_PASS_COUNT(a_and_b_together, 0): 1 !== 0
 UVM_UNIT: ERROR: property_test.sv:79 @ 410: ASSERT_PROPERTY_FAIL_COUNT(a_and_b_together, 1): 0 !== 1
-UVM_UNIT TEST FINISHED: failing_property_test_1 (property_test.sv:69) -- FAILED
+UVM_UNIT TEST FINISHED: failing_property_test_1 (property_test.sv:69) @410 -- FAILED
 ----------------------------------------------------------------
-UVM_UNIT TEST STARTING: failing_property_test_2 (property_test.sv:82)
+UVM_UNIT TEST STARTING: failing_property_test_2 (property_test.sv:82) @410
 UVM_UNIT: ERROR: property_test.sv:90 @ 570: ASSERT_PROPERTY_PASS_COUNT(a_and_b_together, 1): 0 !== 1
 UVM_UNIT: ERROR: property_test.sv:91 @ 570: ASSERT_PROPERTY_FAIL_COUNT(a_and_b_together, 0): 1 !== 0
 UVM_UNIT: ERROR: property_test.sv:92 @ 570: ASSERT_PROPERTY_PASS_COUNT(a_and_b_together, 1): 0 !== 1
 UVM_UNIT: ERROR: property_test.sv:92 @ 570: ASSERT_PROPERTY_FAIL_COUNT(a_and_b_together, 0): 1 !== 0
-UVM_UNIT TEST FINISHED: failing_property_test_2 (property_test.sv:82) -- FAILED
+UVM_UNIT TEST FINISHED: failing_property_test_2 (property_test.sv:82) @570 -- FAILED
 ================================================================
 UVM_UNIT: ALL TESTS COMPLETE (4 tests)
 ----------------------------------------------------------------

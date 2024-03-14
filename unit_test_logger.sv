@@ -42,9 +42,11 @@ class unit_test_logger;
 
     protected unit_test_info        current_test_info;
     protected int                   num_unit_tests;
+    protected int                   total_errors = 0;
 
     function new();
         num_unit_tests = 0;
+        total_errors = 0;
     endfunction
 
     virtual function void start_logger();
@@ -67,12 +69,21 @@ class unit_test_logger;
     endfunction
 
     virtual function void inc_err_count();
+        total_errors++;
         if (err_per_ut.exists(current_test_info)) begin
             err_per_ut[current_test_info]++;
         end else begin
             ut_with_errors.push_back(current_test_info);
             err_per_ut[current_test_info] = 1;
         end
+    endfunction
+
+    virtual function bit all_passing();
+        return ut_with_errors.size() == 0;
+    endfunction
+
+    virtual function int get_num_errors();
+        return total_errors;
     endfunction
 
     virtual function void log(string str);
@@ -88,7 +99,7 @@ class unit_test_logger;
     endfunction
 
     virtual function string get_pre_test_message();
-        return {log_separator, "\nUVM_UNIT TEST STARTING: ", current_test_info.str()};
+        return {log_separator, "\nUVM_UNIT TEST STARTING: ", current_test_info.str(), $sformatf(" @%0t", $time())};
     endfunction
 
     virtual function string get_post_test_message();
@@ -97,13 +108,12 @@ class unit_test_logger;
 
         string  pass_fail = failed ? "FAILED" : "PASSED";
 
-        return {"UVM_UNIT TEST FINISHED: ", current_test_info.str(), " -- ", pass_fail};
+        return {"UVM_UNIT TEST FINISHED: ", current_test_info.str(), $sformatf(" @%0t", $time()), " -- ", pass_fail};
     endfunction
 
     virtual function string get_uvm_unit_summary();
         int             num_failing_unit_tests = err_per_ut.size();
         int             num_passing_unit_tests = num_unit_tests - num_failing_unit_tests;
-        int             total_errors = 0;
         string          summary = $sformatf("%s\nUVM_UNIT: ALL TESTS COMPLETE (%0d tests)",
                                             start_stop_separator, num_unit_tests);
 
@@ -115,7 +125,6 @@ class unit_test_logger;
             int num_errs = err_per_ut[ti];
             summary = {summary, "\n", ti.str(), ": ", $sformatf("%0d", num_errs), " error"};
             if (num_errs > 1) summary = {summary, "s"};
-            total_errors += num_errs;
         end
 
         summary = {summary, "\n", log_separator};

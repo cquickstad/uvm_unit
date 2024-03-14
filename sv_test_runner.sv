@@ -47,8 +47,7 @@ class sv_test_runner extends unit_test_pkg::unit_test_runner;
             running_test = test_creators[running_test_info.ut_name].create(this);
         end else begin
             $stacktrace;
-            $display("Did not find %s in factory", running_test_info.ut_name);
-            $finish;
+            $fatal(1, "Did not find %s in factory", running_test_info.ut_name);
         end
     endfunction
 

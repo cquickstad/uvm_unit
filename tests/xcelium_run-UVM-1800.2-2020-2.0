@@ -33,9 +33,9 @@ function xcelium_no_uvm {
 }
 
 xcelium fixtures_and_assertions_test.sv second_file_test.sv
-xcelium passing_test.sv
-xcelium empty_test.sv
-xcelium one_error_test.sv
+! xcelium passing_test.sv && echo "FAILED - passing test should have passing exit code" && exit 1
+! xcelium empty_test.sv && echo "FAILED - passing empty test should have passing exit code" && exit 1
+xcelium one_error_test.sv && echo "FAILED - failing test should have failing exit code" && exit 1
 xcelium uvm_warning_error_fatal_test.sv
 xcelium unit_test_run_module_body_test.sv
 xcelium run_phases_test.sv

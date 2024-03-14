@@ -76,7 +76,7 @@ module unit_test_run_module;
         `endif
 
         logger.stop_logger();
-        $finish();
+        if (logger.all_passing()) $finish(0); else $fatal(0, $sformatf(" ****** UVM_UNIT EXITING WITH %0d ERRORS ****** ", logger.get_num_errors()));
     end
 endmodule
 
