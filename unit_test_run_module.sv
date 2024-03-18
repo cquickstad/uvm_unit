@@ -76,9 +76,21 @@ module unit_test_run_module;
         `endif
 
         logger.stop_logger();
-        if (logger.all_passing()) $finish(0); else $fatal(0, $sformatf(" ****** UVM_UNIT EXITING WITH %0d ERRORS ****** ", logger.get_num_errors()));
+
+        // WARNING: Cadence's Xcelium will print the line of code that exits the simulator.
+        //          It does this even if $finish() is called to successfully exit.
+        //          Also, some projects may have a scripting environment that grep for
+        //          words like "fatal" or "ERROR" in the output to determine success.
+        //          If one of those bad words appears on the $finish() line, such as in a
+        //          code comment or in a string, a script may have a false negative,
+        //          flagging a failure when actually the unit tests all passed.
+        //
+        if (logger.all_passing()) begin
+            $finish(0);
+        end else begin
+            $fatal(0, $sformatf(" ****** UVM_UNIT EXITING WITH %0d ERROR(S) ****** ", logger.get_num_errors()));
+        end
     end
 endmodule
-
 
 `endif // __UNIT_TEST_RUN_MODULE_SV__
