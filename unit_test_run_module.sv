@@ -86,7 +86,7 @@ module unit_test_run_module;
         //          flagging a failure when actually the unit tests all passed.
         //
         if (logger.all_passing()) begin
-            $finish(0);
+            $finish();
         end else begin
             $fatal(0, $sformatf(" ****** UVM_UNIT EXITING WITH %0d ERROR(S) ****** ", logger.get_num_errors()));
         end
