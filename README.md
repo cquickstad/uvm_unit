@@ -1,6 +1,8 @@
 # uvm_unit
 A Unit-Testing Framework for SystemVerilog and UVM.
 
+uvm_unit not only enables complete Test-Driven Development of your UVM test bench, but also any SystemVerilog code, even RTL modules.  All UVM Phases can be tested.  There are no script dependencies and minimal boilerplate code.
+
 [SVUnit](https://github.com/svunit/svunit) is no longer the "only SystemVerilog test framework in existence."
 
 ## What's wrong with SVUnit?
@@ -15,12 +17,12 @@ uvm_unit...
 - has assertion macros with `ASSERT_*()` names that are more familiar to users of other unit test frameworks.
 - has UVM class-based test fixtures. Not only can one fixture inherit from another, but the fixture behaves a lot like a parent component, similar to your production environment.
 
-## What's wrong with uvm_unit?
+## What's the catch? How did uvm_unit achieve these goals?
 A critical feature of a unit testing framework is that the tests can run in any order without time/order dependencies between them. To do this, the critical UVM infrastructure needs to be destroyed and rebuilt for each unit test. The UVM codebase was not written in a way to allow for this, even by extending its base classes.
 
 Likewise, UVM was written in a way that makes it impossible to rerun any of the UVM Phases, even by extending its base classes. This blocked the most critical feature uvm_unit tried to achieve.
 
-The UVM Codebase makes widespread use of the evil Singleton Class anti-pattern.
+Furthermore, the UVM Codebase makes widespread use of the evil Singleton Class anti-pattern.
 - Singletons are really just fancy global state. (That's a code smell.)
 - Singletons violate the Single Responsibility Principle because they control their own creation and life cycle.
 - Singletons lead to tight coupling.
@@ -37,12 +39,14 @@ uvm_unit ships with the modified UVM codebase and therefore supports only these 
 - Provide the `src` directory of the modified-UVM version as an include directory to your simulator (e.g. `-incdir /tool/path/uvm_unit/uvm-1.2/src`).
 - For exact details, check out the run scripts for Xcelium, Questa, and VCS in the examples directory.
 
-A unit test only needs to have `` `include "uvm_unit.svh"``, have additional `` `include`` statements to bring in the code you're wanting to test, then define one or more tests using one of the test definition macros such as `` `RUN_PHASE_TEST()/`END_RUN_PHASE_TEST`` or `` `UVM_TEST()/`END_UVM_TEST``.  Any tests that are defined in the global scope are automatically run by the unit test framework.
+A unit test only needs to have `` `include "uvm_unit.svh"``, have any additional `` `include`` statements to bring in the code you're wanting to test, then define one or more tests using one of the test definition macros such as `` `RUN_PHASE_TEST()/`END_RUN_PHASE_TEST`` or `` `UVM_TEST()/`END_UVM_TEST``.  Any tests that are defined in the global scope are automatically run by the unit test framework.
 
 The examples in the examples directory show several use cases and provide the simple compile and run commands for each example for the major industry simulators (Xcelium, Questa, and VCS).
 
 ## Is it only for UVM test-benches?
 No. uvm_unit also ships with a stripped down framework called 'sv_test' that leaves out all of the UVM stuff. See how it's used in the [coverage example](https://github.com/cquickstad/uvm_unit/tree/master/examples/coverage).
+
+The sv_test framework can be used to test RTL modules or any other code where UVM is not required.
 
 ## Does this thing actually work?
 Yes. uvm_unit is well tested. (See [the tests](https://github.com/cquickstad/uvm_unit/tree/master/tests).)
