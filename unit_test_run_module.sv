@@ -31,14 +31,6 @@
 
 
 
-`ifndef SV_TEST_RUNNER_TYPE
-`define SV_TEST_RUNNER_TYPE sv_test_pkg::sv_test_runner
-`endif
-
-`ifndef UVM_UNIT_TEST_RUNNER_TYPE
-`define UVM_UNIT_TEST_RUNNER_TYPE uvm_unit_pkg::uvm_unit_test_runner
-`endif
-
 `ifndef UNIT_TEST_LOGGER_TYPE
 `define UNIT_TEST_LOGGER_TYPE unit_test_pkg::unit_test_logger
 `endif
@@ -59,21 +51,17 @@ module unit_test_run_module;
     `endif
 
     initial begin
-        automatic `UNIT_TEST_LOGGER_TYPE        logger = new();
+        automatic `UNIT_TEST_LOGGER_TYPE logger = new();
+        automatic unit_test_pkg::unit_test_runner runner_q[$] =
+            unit_test_pkg::unit_test_runner::get_unit_test_runners();
 
         logger.start_logger();
 
-        begin
-            automatic `SV_TEST_RUNNER_TYPE    tr = new(logger);
+        foreach (runner_q[i]) begin
+            automatic unit_test_pkg::unit_test_runner tr = runner_q[i];
+            tr.set_logger(logger);
             tr.run_all_unit_tests();
         end
-
-        `ifdef __UVM_UNIT_SVH__
-        begin
-            automatic `UVM_UNIT_TEST_RUNNER_TYPE    tr = new(logger);
-            tr.run_all_unit_tests();
-        end
-        `endif
 
         logger.stop_logger();
 

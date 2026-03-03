@@ -31,8 +31,17 @@ typedef unit_test_info ut_info_q_t[$];
 virtual class unit_test_runner;
     protected unit_test_info    running_test_info;
     protected unit_test_logger  logger;
+    protected static unit_test_runner unit_test_runner_q[$];
 
-    function new(unit_test_logger logger);
+    typedef unit_test_runner unit_test_runner_q_t[$];
+    static function unit_test_runner_q_t get_unit_test_runners();
+        return unit_test_runner_q;
+    endfunction
+
+    function new();
+    endfunction
+
+    virtual function void set_logger(unit_test_logger logger);
         this.logger = logger;
     endfunction
 

@@ -52,8 +52,15 @@ class uvm_unit_test_runner extends unit_test_pkg::unit_test_runner;
     protected static unit_test_pkg::unit_test_info  uvm_ut_info_q[$];
     protected uvm_unit_fixture                      running_test;
 
-    function new(unit_test_logger logger);
-        super.new(logger);
+    protected static bit runner_registered = register_runner();
+    protected static function bit register_runner();
+        uvm_unit_test_runner instance_of_me = new();
+        unit_test_pkg::unit_test_runner::unit_test_runner_q.push_back(instance_of_me);
+        return 1;
+    endfunction
+
+    function new();
+        super.new();
     endfunction
 
     static function unit_test_pkg::unit_test_info register_uvm_unit_test(string ut_name, string ut_file, int ut_line);

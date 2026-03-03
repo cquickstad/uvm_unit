@@ -31,8 +31,15 @@ class sv_test_runner extends unit_test_pkg::unit_test_runner;
     protected static sv_test_factory                test_creators[string]; // [test_name]
     protected sv_test_fixture                       running_test;
 
-    function new(unit_test_logger logger);
-        super.new(logger);
+    protected static bit runner_registered = register_runner();
+    protected static function bit register_runner();
+        sv_test_runner instance_of_me = new();
+        unit_test_pkg::unit_test_runner::unit_test_runner_q.push_back(instance_of_me);
+        return 1;
+    endfunction
+
+    function new();
+        super.new();
     endfunction
 
     static function sv_test_factory register_sv_test_creator(sv_test_factory creator, string ut_name, string ut_file, int ut_line);
