@@ -44,7 +44,7 @@ A unit test only needs to have `` `include "uvm_unit.svh"``, have any additional
 The examples in the examples directory show several use cases and provide the simple compile and run commands for each example for the major industry simulators (Xcelium, Questa, and VCS).
 
 ## Is it only for UVM test-benches?
-No. uvm_unit also ships with a stripped down framework called 'sv_test' that leaves out all of the UVM stuff. See how it's used in the [coverage example](https://github.com/cquickstad/uvm_unit/tree/master/examples/coverage).
+No. uvm_unit also ships with a stripped down framework called 'sv_test' that leaves out all of the UVM stuff. See how it's used in the [mux example](https://github.com/cquickstad/uvm_unit/tree/master/examples/mux).
 
 The sv_test framework can be used to test RTL modules or any other code where UVM is not required.
 
