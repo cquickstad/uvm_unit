@@ -1,7 +1,3 @@
-// sv_test does not need to have UVM included, which results in less
-// overhead when UVM is not needed.
-`include "sv_test.svh"
-
 // The module that will be tested.
 // This would ordinarily reside in another and be included here.
 module D_flip_flop
@@ -20,6 +16,11 @@ module D_flip_flop
     end : proc_q
 endmodule
 
+`ifdef VERILATOR
+    `include "unit_test_macros.sv"
+`else
+    `include "sv_test.svh"
+`endif
 
 // A parent module is needed for testing.
 // The parent module provides a place for the Module Under Test (MUT) to be
@@ -28,11 +29,16 @@ endmodule
 // This module is a top-level module
 module D_flip_flop_test_module;
 
+    // 4-state logic is experimental in verilator as of version 5.052
+    const static logic _tmp_ = 'x;
+    const static bit sim_is_4state = (_tmp_ === 1'bX);
+
     // Signals in the unit-test module used to interface to the Module Under Test.
     logic   clk;
     logic   rst_n;
     logic   d;
     logic   q;
+
 
     // Module Under Test
     D_flip_flop     mut(.*); // dot-star connects to the above signals of the same name
@@ -41,11 +47,11 @@ module D_flip_flop_test_module;
     `SV_TEST(test_that_reset_clears_output)
         rst_n = 'X;
         #1;
-        `ASSERT_EQ(q, 1'bX)
+        `ASSERT_EQ(q, (sim_is_4state ? 1'bX : 1'b0))
 
         rst_n = 1;
         #1;
-        `ASSERT_EQ(q, 1'bX)
+        `ASSERT_EQ(q, (sim_is_4state ? 1'bX : 1'b0))
 
         rst_n = 0;
         #1;
@@ -138,12 +144,24 @@ module D_flip_flop_test_module;
         @(negedge clk);
         d = 'X;
         @(negedge clk);
-        `ASSERT_EQ(q, 1'bX) // Expect pass
+        `ASSERT_EQ(q, (sim_is_4state ? 1'bX : 1'b0)) // Expect pass
         `ASSERT_EQ(q, 1'bZ) // Expect fail
         d = 'Z;
         @(negedge clk);
-        `ASSERT_EQ(q, 1'bZ) // Expect pass
+        `ASSERT_EQ(q, (sim_is_4state ? 1'bZ : 1'b0)) // Expect pass
         `ASSERT_EQ(q, 1'bX) // Expect fail
     `END_SV_TEST
 
 endmodule
+
+
+`ifdef VERILATOR
+    // As of version 5.052 2026-09-05, Verilator only supports a single top module.
+    // Therefore, any module-under-test will need to be instantiated under that
+    // module.  uvm_unit/sv_test need unit_test_run_module as the top module, so
+    // the module-under-test will be instantiated under it.
+    `define UNIT_TEST_RUN_MODULE_BODY \
+        D_flip_flop_test_module test_module();
+
+    `include "sv_test.svh"
+`endif

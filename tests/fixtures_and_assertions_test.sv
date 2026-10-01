@@ -74,10 +74,13 @@ endclass
 `END_RUN_PHASE_TEST
 
 `RUN_PHASE_TEST(assertions)
-    uvm_component       null_handle = null;
-    uvm_component       non_null_handle = this;
-    int                 i_arr[] = {2, 3, 7, 9};
-    string              str, s_q[$] = '{"one", "five", "ten"};
+    uvm_component null_handle = null;
+    uvm_component non_null_handle = this;
+    int           i_arr[] = {2, 3, 7, 9};
+    string        str, s_q[$] = '{"one", "five", "ten"};
+    int           int_q_example[$] = {7};
+    string        assignment_pattern_output = $sformatf("%p", int_q_example);
+    bit           simulator_has_h = (assignment_pattern_output == "'{'h7}"); // vs. "'{7}"
 
     #1;
     `ASSERT_TRUE(!(1'b1))               // Expect fail
@@ -112,7 +115,7 @@ endclass
     #1;
     `ASSERT_AP_EQ_STR(i_arr, "foo")     // Expect fail
     #1;
-    `ASSERT_AP_EQ_STR(i_arr, "'{2, 3, 7, 9}") // Expect pass
+    `ASSERT_AP_EQ_STR(i_arr, (simulator_has_h ? "'{'h2, 'h3, 'h7, 'h9}" : "'{2, 3, 7, 9}")) // Expect pass
     #1;
     `ASSERT_STR_EQ("foo", "bar")        // Expect fail
     #1;

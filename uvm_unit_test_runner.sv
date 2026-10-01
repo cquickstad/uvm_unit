@@ -92,6 +92,20 @@ class uvm_unit_test_runner extends unit_test_pkg::unit_test_runner;
     virtual task run_the_unit_test();
         pass_unit_test_runner_to_test();
         uvm_pkg::uvm_report_server::uvm_test_file_handle = logger.get_log_file_descriptor();
+
+        `ifdef VERILATOR
+        begin
+            // As of Verilator 5.052 2026-09-05, DPI is not supported, which
+            // will cause the following warnings and message that we will need
+            // to be turned off to prevent false failures and spam in the test
+            // output.
+            automatic uvm_root r = uvm_root::get();
+            r.set_report_id_action("NO_DPI_USED", UVM_NO_ACTION);
+            r.set_report_id_action("NO_DPI_TSTNAME", UVM_NO_ACTION);
+            r.set_report_id_action("NO_VISIT_CHECK", UVM_NO_ACTION);
+            r.set_report_id_action("UVM/COMP/NAMECHECK", UVM_NO_ACTION);
+        end
+        `endif
         uvm_pkg::run_test(running_test_info.ut_name);
         running_test.post_unit_test();
         uvm_pkg::destroy_uvm();

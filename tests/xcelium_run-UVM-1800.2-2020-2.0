@@ -3,7 +3,7 @@ rm -rf out.log
 touch out.log
 
 # UVM_LIB will need to be set to some path, such as the following
-# setenv UVM_LIB /some/path/cadenceINCISIVE/15.20.018/tools.lnx86/methodology/UVM/CDNS-1.2/additions/sv/lib/libuvmdpi.so
+# UVM_LIB=/some/path/libuvmdpi.so
 
 function xcelium {
     xrun                                            \

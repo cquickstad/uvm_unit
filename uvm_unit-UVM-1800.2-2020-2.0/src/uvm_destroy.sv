@@ -186,6 +186,9 @@ function void destroy_uvm();
 
     uvm_reg_map::destroy_backdoor();
 
+    m_uvm_core_state.delete();
+    uvm_deferred_init.delete();
+
     uvm_cmdline_processor::reset();
 
     // The is actually recreating uvm_root, but we can't let
