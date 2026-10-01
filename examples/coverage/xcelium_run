@@ -8,6 +8,8 @@ function xcelium {
         -uvmnocdnsextra                     \
         -uvmnoloaddpi                       \
         -sv_lib $UVM_LIB                    \
+        -covoverwrite                       \
+        +xmcovfile+coverage.ccf             \
         -incdir ../../                      \
         -incdir ../../uvm_unit-uvm-1.2/src  \
         $*

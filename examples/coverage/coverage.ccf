@@ -1,0 +1,8 @@
+select_coverage -covergroup -class fcov
+deselect_coverage -remove_empty_instances
+set_expr_coverable_operators -all
+set_expr_coverable_statements -all
+select_functional
+set_covergroup -new_instance_reporting -per_instance_default_one -optimize_model
+set_code_fine_grained_merging
+set_refinement_resilience

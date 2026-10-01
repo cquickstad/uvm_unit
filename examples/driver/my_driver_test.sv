@@ -1,15 +1,18 @@
-`include "uvm_unit.svh"
-
 `include "my_interface.sv"
-`include "my_item.sv"
-`include "my_driver.sv"
-
 
 // Create a module in which to put our interface, with a signal to drive.
 module driver_test_module;
     reg [31:0] foo;
     my_interface ifc(.*); // .* is the implicit port connection
 endmodule
+
+`define UNIT_TEST_RUN_MODULE_BODY \
+    driver_test_module test_module();
+
+`include "uvm_unit.svh"
+
+`include "my_item.sv"
+`include "my_driver.sv"
 
 
 // The default sequencer will work fine.
@@ -47,7 +50,7 @@ class my_fixture extends uvm_unit_pkg::uvm_unit_fixture;
 
     virtual function void build_phase(uvm_phase phase);
         super.build_phase(phase);
-        uvm_config_db#(virtual my_interface)::set(this, "*", "ifc", driver_test_module.ifc);
+        uvm_config_db#(virtual my_interface)::set(this, "*", "ifc", unit_test_run_module.test_module.ifc);
         seqr = my_sequencer::type_id::create("seqr", this);
         drvr = my_driver::type_id::create("drvr", this);
     endfunction
@@ -66,13 +69,21 @@ endclass
     // of a class that inherits from uvm_test.
 
     my_driver drvr;
+    my_sequencer seqr;
 
     virtual function void build_phase(uvm_phase phase);
         super.build_phase(phase);
+        seqr = my_sequencer::type_id::create("seqr", this);
         drvr = my_driver::type_id::create("drvr", this);
     endfunction
+    virtual function void connect_phase(uvm_phase phase);
+        super.connect_phase(phase);
+        drvr.seq_item_port.connect(seqr.seq_item_export); // Avoid DRVCONNECT warning in IEEE UVM versions beyond 1.2
+    endfunction
     virtual function void phase_started(uvm_phase phase);
-        if (phase.get_name() == "connect") `EXPECT_FATAL_ID("DRIVER_VIF_NOT_FOUND")
+        if (phase.get_name() == "connect") begin
+            `EXPECT_FATAL_ID("DRIVER_VIF_NOT_FOUND")
+        end
     endfunction
 `END_UVM_TEST
 
@@ -86,17 +97,17 @@ endclass
     seq.req.foo = 42;
     seq.start(seqr);
     #1;
-    `ASSERT_EQ(driver_test_module.foo, 42);
+    `ASSERT_EQ(unit_test_run_module.test_module.foo, 42);
 
     seq = new("seq");
     seq.req.foo = 'hDEAD_BEEF;
     seq.start(seqr);
     #1;
-    `ASSERT_EQ(driver_test_module.foo, 'hDEAD_BEEF);
+    `ASSERT_EQ(unit_test_run_module.test_module.foo, 'hDEAD_BEEF);
 
     seq = new("seq");
     seq.req.foo = 'hC0DE;
     seq.start(seqr);
     #1;
-    `ASSERT_EQ(driver_test_module.foo, 'hC0DE);
+    `ASSERT_EQ(unit_test_run_module.test_module.foo, 'hC0DE);
 `END_RUN_PHASE_TEST

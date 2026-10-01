@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Limit CPU and memory usage so the system isn't swamped and unresponsive.
+# Assumes Hyperthreading (divide-by-two).
+# Leaves one CPU free (minus one) to keep the system responsive.
+# 8 threads -> 3 jobs; never below 1
+jobs=$(( $(nproc) / 2 - 1 ))
+(( jobs < 1 )) && jobs=1
+
+function vrltr {
+    nice -n 15 ionice -c 3 verilator \
+        -Wno-fatal \
+        --binary \
+        --fourstate \
+        -j $jobs \
+        -MAKEFLAGS 'OBJCACHE=ccache' \
+        -CFLAGS -O0 \
+        --top-module unit_test_run_module \
+        +incdir+../../ \
+        "$@" \
+    && \
+    ./obj_dir/Vunit_test_run_module \
+    && \
+    rm -rf obj_dir/
+}
+
+vrltr my_property_test.sv
+

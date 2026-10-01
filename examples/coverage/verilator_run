@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Limit CPU and memory usage so the system isn't swamped and unresponsive.
+# Assumes Hyperthreading (divide-by-two).
+# Leaves one CPU free (minus one) to keep the system responsive.
+# 8 threads -> 3 jobs; never below 1
+jobs=$(( $(nproc) / 2 - 1 ))
+(( jobs < 1 )) && jobs=1
+
+function vrltr {
+    nice -n 15 ionice -c 3 verilator \
+        --binary \
+        --coverage \
+        --coverage-user \
+        -j $jobs \
+        -MAKEFLAGS 'OBJCACHE=ccache' \
+        -CFLAGS -O0 \
+        --top-module unit_test_run_module \
+        +incdir+../../ \
+        "$@" \
+    && \
+    ./obj_dir/Vunit_test_run_module \
+        +verilator+coverage+file+coverage.dat \
+    && \
+    rm -rf obj_dir/
+}
+
+vrltr my_coverage_test.sv
+

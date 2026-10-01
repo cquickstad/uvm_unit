@@ -2,7 +2,18 @@
 
 `timescale 1ps/1ps
 
-`include "sv_test.svh"
+`ifdef VERILATOR
+  `include "unit_test_macros.sv"
+
+  // As of version 5.052 2026-09-05, Verilator only supports a single top module.
+  // Therefore, any module-under-test will need to be instantiated under that
+  // module.  uvm_unit/sv_test need unit_test_run_module as the top module, so
+  // the module-under-test will be instantiated under it.
+  `define UNIT_TEST_RUN_MODULE_BODY \
+      property_test_module test();
+`endif
+
+  `include "sv_test.svh"
 
 // Create a module in which to put our Property Under Test
 module property_test_module;
@@ -35,6 +46,9 @@ module property_test_module;
   // referencing the module path (i.e 'valid' instead of 'property_test_module.valid')
   class my_fixture extends sv_test_pkg::sv_test_fixture;
 
+    // As of  5.052, verilator counts vacuous passes
+    const static bit vacuous_passes_counted = `ifdef VERILATOR 1 `else 0 `endif ;
+
     function new(unit_test_pkg::unit_test_runner tr);
       super.new(tr);
     endfunction
@@ -64,8 +78,8 @@ module property_test_module;
     @(posedge clock);
     valid = 0;
     @(posedge clock);
-    `ASSERT_PROPERTY_PASS_FAIL_COUNT(a_and_b_together, 0, 1)
-    `ASSERT_PROPERTY_PASS_FAIL_COUNT(a_and_b_no_args, 0, 1)
+    `ASSERT_PROPERTY_PASS_FAIL_COUNT(a_and_b_together, (vacuous_passes_counted ? 2: 0), 1)
+    `ASSERT_PROPERTY_PASS_FAIL_COUNT(a_and_b_no_args, (vacuous_passes_counted ? 2 : 0), 1)
   `END_SV_TEST
 
   `SV_TEST_F(my_fixture, property_passes_test)
@@ -76,9 +90,8 @@ module property_test_module;
     @(posedge clock);
     valid = 0;
     @(posedge clock);
-    `ASSERT_PROPERTY_PASS_FAIL_COUNT(a_and_b_together, 1, 0)
-    `ASSERT_PROPERTY_PASS_FAIL_COUNT(a_and_b_no_args, 1, 0)
+    `ASSERT_PROPERTY_PASS_FAIL_COUNT(a_and_b_together, (vacuous_passes_counted ? 3: 1), 0)
+    `ASSERT_PROPERTY_PASS_FAIL_COUNT(a_and_b_no_args, (vacuous_passes_counted ? 3: 1), 0)
   `END_SV_TEST
 
 endmodule
-
